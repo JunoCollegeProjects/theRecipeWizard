@@ -4,25 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/styles.css">
     <title>API Test</title>
   </head>
   <body>
     <h1>Testing Spoonacular</h1>
-
-    <script>
-      const apiKey = "92cf896d674746e9b22c1a0c561637cd";
-
-      const url = new URL("https://api.spoonacular.com/recipes/complexSearch");
-      url.search = new URLSearchParams({
-        query: "pasta",
-        apiKey: apiKey,
-      });
-
-      fetch(url)
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-        });
-    </script>
+    <script src="./script.js"></script>
   </body>
 </html>
