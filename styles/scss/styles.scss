@@ -1,0 +1,16 @@
+@import "setup";
+@import "variables";
+@import "mixins";
+
+body {
+  background: $junoRed;
+  color: blue;
+}
+
+h1 {
+  @include headerFont(50px, purple);
+}
+
+h2 {
+  @include headerFont();
+}
