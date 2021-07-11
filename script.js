@@ -21,8 +21,8 @@ app.getRecipe = function (userInput) {
     apiKey: app.apiKey,
   });
 
-  //returns a promise
-  fetch(url).then(res => res.json());
+  // returns a promise
+  return fetch(url).then(res => res.json());
 };
 
 app.displayRecipeCards = () => {};
@@ -30,17 +30,17 @@ app.displayRecipeCards = () => {};
 // Init method that kicks everything off
 app.init = () => {
   console.log("Woohoo initialized!");
+  const recipeSearch = document.querySelector("#recipeSearch");
+  recipeSearch.addEventListener("submit", e => {
+    e.preventDefault();
+    const recipe = document.querySelector("#recipe").value.trim();
+    app.getRecipe(recipe).then(data => {
+      console.log(data);
+    });
+  });
 };
 
 // Calling init function
-app.init();
-
-const recipeSearch = document.querySelector("#recipeSearch");
-recipeSearch.addEventListener("submit", e => {
-  e.preventDefault();
-  console.log(e);
-  const recipe = document.querySelector("#recipe").value.trim();
-  console.log(recipe);
-  const recipeArray = app.getRecipe(recipe).then(data => data);
-  console.log(recipeArray);
+document.addEventListener("DOMContentLoaded", function () {
+  app.init();
 });
