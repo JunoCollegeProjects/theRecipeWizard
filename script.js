@@ -17,7 +17,7 @@ app.getRecipe = function (userInput) {
   const url = new URL(app.apiUrl);
   url.search = new URLSearchParams({
     ingredients: userInput,
-    number: 5,
+    number: 6,
     apiKey: app.apiKey,
   });
 

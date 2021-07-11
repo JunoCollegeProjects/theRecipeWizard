@@ -3,8 +3,7 @@
 @import "mixins";
 
 body {
-  background: $junoRed;
-  color: blue;
+  background: $primaryColor;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -26,6 +25,16 @@ h2 {
   @include headerFont();
 }
 
+main {
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
 
 footer {
   text-align: center;

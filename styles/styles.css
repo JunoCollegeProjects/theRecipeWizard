@@ -236,8 +236,7 @@ html {
 }
 
 body {
-  background: #ea693e;
-  color: blue;
+  background: #3eead3;
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -266,8 +265,26 @@ h1 {
 
 h2 {
   font-weight: 700;
-  color: red;
+  color: black;
   font-size: 30px;
+}
+
+main form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 footer {
