@@ -36,6 +36,17 @@ main {
   }
 }
 
+.recipeResults {
+  list-style: none;
+  li {
+    display: inline-block;
+    width: 200px;
+    img {
+      width: 100%;
+    }
+  }
+}
+
 footer {
   text-align: center;
 }

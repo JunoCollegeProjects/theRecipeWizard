@@ -25,7 +25,19 @@ app.getRecipe = function (userInput) {
   return fetch(url).then(res => res.json());
 };
 
-app.displayRecipeCards = () => {};
+app.displayRecipeCards = resultArray => {
+  const cardContainer = document.querySelector(".recipeResults");
+  console.log("display");
+  for (item of resultArray) {
+    const liElement = document.createElement("li");
+    liElement.innerHTML = `
+      <img src=${item.image} alt="test alt">
+      <h3>${item.title}</h3>
+    `;
+    console.log(liElement.innerHTML);
+    cardContainer.appendChild(liElement);
+  }
+};
 
 // Init method that kicks everything off
 app.init = () => {
@@ -36,6 +48,7 @@ app.init = () => {
     const recipe = document.querySelector("#recipe").value.trim();
     app.getRecipe(recipe).then(data => {
       console.log(data);
+      app.displayRecipeCards(data);
     });
   });
 };

@@ -287,6 +287,17 @@ main form {
           align-items: center;
 }
 
+.recipeResults {
+  list-style: none;
+}
+.recipeResults li {
+  display: inline-block;
+  width: 200px;
+}
+.recipeResults li img {
+  width: 100%;
+}
+
 footer {
   text-align: center;
 }
