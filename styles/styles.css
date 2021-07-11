@@ -263,7 +263,7 @@ body {
 
 h1 {
   font-weight: 700;
-  color: purple;
+  color: black;
   font-size: 50px;
   text-align: center;
 }
@@ -304,9 +304,12 @@ main form {
       flex-wrap: wrap;
 }
 .recipeResults li {
+  background-color: aliceblue;
   -ms-flex-preferred-size: 300px;
       flex-basis: 300px;
   border: 2px solid #4222f7;
+  -webkit-box-shadow: 5px 5px 3px #3eabea;
+          box-shadow: 5px 5px 3px #3eabea;
   border-radius: 10px;
   padding: 20px;
   margin: 20px;

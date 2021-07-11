@@ -34,6 +34,7 @@ app.displayRecipeCards = resultArray => {
     liElement.innerHTML = `
       <img src=${item.image} alt="test alt">
       <h3>${item.title}</h3>
+      <button>Recipe</button>
     `;
     console.log(item);
     cardContainer.appendChild(liElement);

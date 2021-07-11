@@ -22,7 +22,7 @@ body {
 }
 
 h1 {
-  @include headerFont(50px, purple);
+  @include headerFont(50px);
   text-align: center;
 }
 
@@ -48,8 +48,10 @@ main {
   flex-wrap: wrap;
   li {
     // display: inline-block;
+    background-color: aliceblue;
     flex-basis: 300px;
     border: 2px solid rgb(66, 34, 247);
+    box-shadow: 5px 5px 3px $secondaryColor;
     border-radius: 10px;
     padding: 20px;
     margin: 20px;
