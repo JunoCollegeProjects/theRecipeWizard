@@ -2,6 +2,11 @@
 @import "variables";
 @import "mixins";
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background: $primaryColor;
   min-height: 100vh;
@@ -38,9 +43,16 @@ main {
 
 .recipeResults {
   list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   li {
-    display: inline-block;
-    width: 200px;
+    // display: inline-block;
+    flex-basis: 300px;
+    border: 2px solid rgb(66, 34, 247);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
     img {
       width: 100%;
     }

@@ -19,6 +19,7 @@ app.getRecipe = function (userInput) {
     ingredients: userInput,
     number: 6,
     apiKey: app.apiKey,
+    ranking: 2,
   });
 
   // returns a promise
@@ -34,7 +35,7 @@ app.displayRecipeCards = resultArray => {
       <img src=${item.image} alt="test alt">
       <h3>${item.title}</h3>
     `;
-    console.log(liElement.innerHTML);
+    console.log(item);
     cardContainer.appendChild(liElement);
   }
 };
