@@ -5,12 +5,28 @@
 body {
   background: $junoRed;
   color: blue;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wrapper {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
 }
 
 h1 {
   @include headerFont(50px, purple);
+  text-align: center;
 }
 
 h2 {
   @include headerFont();
+}
+
+
+footer {
+  text-align: center;
 }
