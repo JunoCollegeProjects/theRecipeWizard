@@ -28,6 +28,7 @@ app.getRecipe = function (userInput) {
 
 app.displayRecipeCards = resultArray => {
   const cardContainer = document.querySelector(".recipeResults");
+  cardContainer.innerHTML = "";
   console.log("display");
   for (item of resultArray) {
     const liElement = document.createElement("li");
