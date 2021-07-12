@@ -292,6 +292,13 @@ main form {
           align-items: center;
 }
 
+button {
+  background-color: #3eea7d;
+  border: 1px solid #3eabea;
+  padding: 5px;
+  margin: 5px;
+}
+
 .recipeResults {
   list-style: none;
   display: -webkit-box;

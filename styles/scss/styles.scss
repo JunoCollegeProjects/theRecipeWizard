@@ -41,6 +41,13 @@ main {
   }
 }
 
+button {
+  background-color: $tertiaryColor;
+  border: 1px solid $secondaryColor;
+  padding: 5px;
+  margin: 5px;
+}
+
 .recipeResults {
   list-style: none;
   display: flex;
