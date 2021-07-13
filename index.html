@@ -14,9 +14,16 @@
     </header>
 
     <main class="wrapper">
-      <form action="submit" id="recipeSearch">
-        <label for="recipe">Enter Ingredients</label>
-        <input type="text" id="recipe" />
+      <form action="submit" id="addIngredient">
+        <label for="recipe" class="sr-only">Enter Ingredients:</label>
+        <input type="text" id="recipe" placeholder="Enter Ingredients" />
+        <button type="submit">Add</button>
+      </form>
+
+      <form action="" id="searchContainer"> 
+        <ul>
+          <!-- Dynamic Content -->
+        </ul>
         <button type="submit">Search</button>
       </form>
 
@@ -29,6 +36,8 @@
       <p>Created at Juno College by Gavyn Holt and Sherry Truong</p>
     </footer>
 
+    <script src="https://kit.fontawesome.com/b5c85453fa.js" crossorigin="anonymous"></script>
     <script src="./script.js"></script>
+
   </body>
 </html>

@@ -31,21 +31,67 @@ h2 {
 }
 
 main {
-  form {
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  input {
+    line-height: 2rem;
+    padding: 3px;
+    width: 100px;
   }
+}
+
+#addIngredient {
+  display: flex;
+  justify-content: space-between;
+  input {
+    flex: 1 1 500px;
+    margin-right: 10px;
+    border-radius: 15px;
+  }
+  button {
+    flex: 0 1 100px;
+  }
+}
+
+#searchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 5px 0;
+      li {
+        border: 1px solid teal;
+        margin: 5px;
+        padding: 5px;
+        padding-right: 25px;
+        position: relative;
+        border-radius: 15px;
+        // display: inline-block;
+      }
+      li::after {
+        content: '\f057';
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        position: absolute;
+        right: 5px;
+        color: darkred;
+      }
+    }
+  
 }
 
 button {
   background-color: $tertiaryColor;
   border: 1px solid $secondaryColor;
   padding: 5px;
-  margin: 5px;
+  border-radius: 15px;
 }
 
 .recipeResults {
@@ -71,3 +117,7 @@ button {
 footer {
   text-align: center;
 }
+
+// * {
+//   outline: 1px solid red;
+// }
