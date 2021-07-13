@@ -59,14 +59,21 @@ app.displayRecipeCards = resultArray => {
     recipeLiElement.innerHTML = `
       <img src=${item.image} alt="test alt">
       <h3>${item.title}</h3>
-      <button>Recipe</button>
+      <button class="openModal">Recipe</button>
     `;
     cardContainer.appendChild(recipeLiElement);
+  }
+  // add event listeners to each button
+  const openModalButtons = document.querySelectorAll(".openModal");
+  console.log(openModalButtons);
+  for (button of openModalButtons) {
+    button.addEventListener("click", app.displayModal);
   }
 };
 
 app.displayModal = () => {
   const modalRoot = document.querySelector(".modalRoot");
+  console.log("button clicked");
   modalRoot.innerHTML = `
     <div class="modal">
       <h2> Test Modal, Yo! </h2>
@@ -74,6 +81,17 @@ app.displayModal = () => {
       <button class="closeModal">Close</button>
     </div>
   `;
+  // add class to modalRoot to display
+  modalRoot.classList.add("show");
+  // target modal, and add an event listener for the closeModal button
+  const closeModalButton = modalRoot.querySelector(".closeModal");
+  closeModalButton.addEventListener("click", app.closeModal);
+};
+
+app.closeModal = () => {
+  const modalRoot = document.querySelector(".modalRoot");
+  modalRoot.classList.add("show");
+  modalRoot.innerHTML = "";
 };
 
 // Init method that kicks everything off
@@ -93,8 +111,6 @@ app.init = () => {
       app.displayRecipeCards(data);
     });
   });
-
-  app.displayModal();
 };
 
 // Calling init function

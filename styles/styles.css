@@ -273,6 +273,7 @@ h2 {
   font-weight: 700;
   color: black;
   font-size: 30px;
+  text-align: center;
 }
 
 form {
@@ -378,15 +379,21 @@ button {
   width: 100%;
 }
 
+.modalRoot.show {
+  display: inherit;
+}
+
 .modalRoot {
   display: none;
-  margin: 0 auto;
-  width: 100%;
 }
 .modalRoot .modal {
   max-width: 800px;
-  width: 100%;
+  width: 90%;
   position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
   border: 1px solid black;
   border-radius: 15px;
   -webkit-box-shadow: 5px 5px 3px black;
@@ -402,7 +409,6 @@ button {
       -ms-flex-align: center;
           align-items: center;
   padding: 20px;
-  margin: 20px auto;
   background-color: grey;
 }
 
