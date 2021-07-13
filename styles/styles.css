@@ -378,11 +378,15 @@ button {
   width: 100%;
 }
 
+.modalRoot {
+  display: none;
+  margin: 0 auto;
+  width: 100%;
+}
 .modalRoot .modal {
   max-width: 800px;
   width: 100%;
   position: absolute;
-  top: 0;
   border: 1px solid black;
   border-radius: 15px;
   -webkit-box-shadow: 5px 5px 3px black;

@@ -71,6 +71,7 @@ app.displayModal = () => {
     <div class="modal">
       <h2> Test Modal, Yo! </h2>
       <p>This is a test of the emergency broadcast system </p>
+      <button class="closeModal">Close</button>
     </div>
   `;
 };
