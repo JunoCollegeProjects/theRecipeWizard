@@ -2,15 +2,122 @@
 @import "variables";
 @import "mixins";
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background: $junoRed;
-  color: blue;
+  background: $primaryColor;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wrapper {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
 }
 
 h1 {
-  @include headerFont(50px, purple);
+  @include headerFont(50px);
+  text-align: center;
 }
 
 h2 {
   @include headerFont();
 }
+
+main {
+
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  input {
+    line-height: 2rem;
+    padding: 3px;
+    width: 100px;
+  }
+}
+
+#addIngredient {
+  display: flex;
+  justify-content: space-between;
+  input {
+    flex: 1 1 500px;
+    margin-right: 10px;
+    border-radius: 15px;
+  }
+  button {
+    flex: 0 1 100px;
+  }
+}
+
+#searchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 5px 0;
+      li {
+        border: 1px solid teal;
+        margin: 5px;
+        padding: 5px;
+        padding-right: 25px;
+        position: relative;
+        border-radius: 15px;
+        // display: inline-block;
+      }
+      li::after {
+        content: '\f057';
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        position: absolute;
+        right: 5px;
+        color: darkred;
+      }
+    }
+  
+}
+
+button {
+  background-color: $tertiaryColor;
+  border: 1px solid $secondaryColor;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.recipeResults {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  li {
+    // display: inline-block;
+    background-color: aliceblue;
+    flex-basis: 300px;
+    border: 2px solid rgb(66, 34, 247);
+    box-shadow: 5px 5px 3px $secondaryColor;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+footer {
+  text-align: center;
+}
+
+// * {
+//   outline: 1px solid red;
+// }

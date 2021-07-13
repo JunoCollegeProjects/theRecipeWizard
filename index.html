@@ -4,11 +4,40 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/styles.css" />
     <title>API Test</title>
   </head>
+
   <body>
-    <h1>Testing Spoonacular</h1>
+    <header class="wrapper">
+      <h1>Testing Spoonacular</h1>
+    </header>
+
+    <main class="wrapper">
+      <form action="submit" id="addIngredient">
+        <label for="recipe" class="sr-only">Enter Ingredients:</label>
+        <input type="text" id="recipe" placeholder="Enter Ingredients" />
+        <button type="submit">Add</button>
+      </form>
+
+      <form action="" id="searchContainer"> 
+        <ul>
+          <!-- Dynamic Content -->
+        </ul>
+        <button type="submit">Search</button>
+      </form>
+
+      <div class="container">
+        <ul class="recipeResults"></ul>
+      </div>
+    </main>
+
+    <footer>
+      <p>Created at Juno College by Gavyn Holt and Sherry Truong</p>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/b5c85453fa.js" crossorigin="anonymous"></script>
     <script src="./script.js"></script>
+
   </body>
 </html>
