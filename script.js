@@ -12,7 +12,7 @@ const app = {};
 app.apiUrl = "https://api.spoonacular.com/recipes/findByIngredients";
 app.apiKey = "92cf896d674746e9b22c1a0c561637cd";
 
-app.getRecipe = function (userInput) {
+app.getRecipe = userInput => {
   // Establish connection with API
   const url = new URL(app.apiUrl);
   url.search = new URLSearchParams({
@@ -29,7 +29,6 @@ app.getRecipe = function (userInput) {
 app.displayRecipeCards = resultArray => {
   const cardContainer = document.querySelector(".recipeResults");
   cardContainer.innerHTML = "";
-  console.log("display");
   for (item of resultArray) {
     const liElement = document.createElement("li");
     liElement.innerHTML = `
@@ -37,7 +36,6 @@ app.displayRecipeCards = resultArray => {
       <h3>${item.title}</h3>
       <button>Recipe</button>
     `;
-    console.log(item);
     cardContainer.appendChild(liElement);
   }
 };
@@ -57,6 +55,6 @@ app.init = () => {
 };
 
 // Calling init function
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   app.init();
 });
