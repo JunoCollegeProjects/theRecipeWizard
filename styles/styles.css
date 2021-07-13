@@ -378,6 +378,10 @@ button {
   width: 100%;
 }
 
+.modalRoot {
+  display: none;
+}
+
 footer {
   text-align: center;
 }
