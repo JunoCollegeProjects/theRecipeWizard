@@ -6,7 +6,7 @@
 // Loop through array and for each item, generate html for a recipe card and attach to DOM.
 // When user clicks on card, open up recipe in a modal.
 // When user presses the close button, the modal closes.
-// Return no results found 
+// Return no results found
 
 // Create namespaced object
 const app = {};
@@ -27,7 +27,7 @@ app.getRecipe = userInput => {
   return fetch(url).then(res => res.json());
 };
 
-app.addIngredientToContainer = (e) => {
+app.addIngredientToContainer = e => {
   e.preventDefault();
   const ingredientContainerUl = document.querySelector("#searchContainer ul");
   const ingredientLiElement = document.createElement("li");
@@ -36,20 +36,20 @@ app.addIngredientToContainer = (e) => {
   ingredientLiElement.textContent = ingredient;
   ingredientContainerUl.appendChild(ingredientLiElement);
   inputField.value = "";
-}
+};
 
 app.parseIngredientsToQuery = () => {
   // Grabs search parameters in the form of an array
   const searchParams = document.querySelectorAll("#searchContainer ul li");
   let searchQuery = "";
-  for (i=0; i < searchParams.length; i++) {
+  for (i = 0; i < searchParams.length; i++) {
     searchQuery += searchParams[i].textContent;
     if (i < searchParams.length - 1) {
-      searchQuery += ","
+      searchQuery += ",";
     }
   }
-  console.log(searchQuery); 
-}
+  console.log(searchQuery);
+};
 
 app.displayRecipeCards = resultArray => {
   const cardContainer = document.querySelector(".recipeResults");
@@ -63,7 +63,17 @@ app.displayRecipeCards = resultArray => {
     `;
     cardContainer.appendChild(recipeLiElement);
   }
-}
+};
+
+app.displayModal = () => {
+  const modalRoot = document.querySelector(".modalRoot");
+  modalRoot.innerHTML = `
+    <div class="modal">
+      <h2> Test Modal, Yo! </h2>
+      <p>This is a test of the emergency broadcast system </p>
+    </div>
+  `;
+};
 
 // Init method that kicks everything off
 app.init = () => {
@@ -82,6 +92,8 @@ app.init = () => {
       app.displayRecipeCards(data);
     });
   });
+
+  app.displayModal();
 };
 
 // Calling init function

@@ -110,7 +110,22 @@ button {
 }
 
 .modalRoot {
-  display: none;
+  // display: none;
+  .modal {
+    max-width: 800px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    border: 1px solid black;
+    border-radius: 15px;
+    box-shadow: 5px 5px 3px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 20px auto;
+    background-color: grey;
+  }
 }
 
 footer {

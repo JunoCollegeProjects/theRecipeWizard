@@ -378,8 +378,28 @@ button {
   width: 100%;
 }
 
-.modalRoot {
-  display: none;
+.modalRoot .modal {
+  max-width: 800px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  border: 1px solid black;
+  border-radius: 15px;
+  -webkit-box-shadow: 5px 5px 3px black;
+          box-shadow: 5px 5px 3px black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+  margin: 20px auto;
+  background-color: grey;
 }
 
 footer {
