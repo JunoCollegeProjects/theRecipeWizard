@@ -30,10 +30,6 @@ h2 {
   @include headerFont();
 }
 
-main {
-
-}
-
 form {
   max-width: 600px;
   margin: 0 auto;
@@ -61,30 +57,29 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-    ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      margin: 5px 0;
-      li {
-        border: 1px solid teal;
-        margin: 5px;
-        padding: 5px;
-        padding-right: 25px;
-        position: relative;
-        border-radius: 15px;
-        // display: inline-block;
-      }
-      li::after {
-        content: '\f057';
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        position: absolute;
-        right: 5px;
-        color: darkred;
-      }
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 5px 0;
+    li {
+      border: 1px solid teal;
+      margin: 5px;
+      padding: 5px;
+      padding-right: 25px;
+      position: relative;
+      border-radius: 15px;
+      // display: inline-block;
     }
-  
+    li::after {
+      content: "\f057";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      position: absolute;
+      right: 5px;
+      color: darkred;
+    }
+  }
 }
 
 button {
