@@ -30,23 +30,28 @@ app.getRecipe = userInput => {
 app.addIngredientToContainer = e => {
   e.preventDefault();
   const ingredientContainerUl = document.querySelector("#searchContainer ul");
+  const ingredientLiElement = document.createElement("li");
   const inputField = e.target.querySelector("input");
-  const ingredient = inputField.value;
-  // if (ingredient == "") { 
-  //   alert("please enter an item");
-  // } else {};
-  ingredientContainerUl.innerHTML = `
-    <li>${ingredient} <span class="deleteButton"><i class="far fa-times-circle"></i></span></li>
-  `;
+  const ingredient = inputField.value.trim();
+  console.log(ingredient);
+  if (ingredient != "") {
+    ingredientLiElement.innerText = ingredient;
+    const deleteIngredientButton = document.createElement("span");
+    deleteIngredientButton.classList.add("deleteButton");
+    deleteIngredientButton.innerHTML = '<i class="far fa-times-circle"></i>';
+    ingredientLiElement.append(deleteIngredientButton);
+    ingredientContainerUl.appendChild(ingredientLiElement);
+    deleteIngredientButton.addEventListener("click", app.removeLiElement);
+  }
+  // clear the input no matter what
   inputField.value = "";
-  const deleteButton = document.querySelector(".deleteButton");
-  deleteButton.addEventListener('click', app.removeLiElement);
-  };
+};
 
 // Function to remove ingredient when user clicks on ingredient li element
-app.removeLiElement = (e) => {
-  e.target.remove(e.target);
-}
+app.removeLiElement = e => {
+  const liElement = e.target.closest("li");
+  liElement.remove();
+};
 
 app.parseIngredientsToQuery = () => {
   // Grabs search parameters in the form of an array
@@ -57,8 +62,9 @@ app.parseIngredientsToQuery = () => {
     if (i < searchParams.length - 1) {
       searchQuery += ",";
     }
-  };
+  }
   console.log(searchQuery);
+  return searchQuery;
 };
 
 app.displayRecipeCards = resultArray => {
@@ -83,7 +89,6 @@ app.displayRecipeCards = resultArray => {
 
 app.displayModal = () => {
   const modalRoot = document.querySelector(".modalRoot");
-  console.log("button clicked");
   modalRoot.innerHTML = `
     <div class="modal">
       <h2> Test Modal, Yo! </h2>
@@ -100,8 +105,8 @@ app.displayModal = () => {
 
 app.closeModal = () => {
   const modalRoot = document.querySelector(".modalRoot");
-  modalRoot.classList.add("show");
-  modalRoot.innerHTML = "";
+  modalRoot.classList.remove("show");
+  // modalRoot.innerHTML = "";
 };
 
 // Init method that kicks everything off
@@ -114,10 +119,9 @@ app.init = () => {
 
   recipeSearch.addEventListener("submit", e => {
     e.preventDefault();
-    const recipe = document.querySelector("#recipe").value.trim();
+    const recipe = app.parseIngredientsToQuery();
     app.getRecipe(recipe).then(data => {
       console.log(data);
-      app.parseIngredientsToQuery();
       app.displayRecipeCards(data);
     });
   });
