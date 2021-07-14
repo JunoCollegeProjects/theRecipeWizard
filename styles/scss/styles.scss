@@ -67,17 +67,10 @@ form {
       border: 1px solid teal;
       margin: 5px;
       padding: 5px;
-      padding-right: 25px;
-      position: relative;
       border-radius: 15px;
       // display: inline-block;
     }
-    li::after {
-      content: "\f057";
-      font-family: "Font Awesome 5 Free";
-      font-weight: 900;
-      position: absolute;
-      right: 5px;
+    .deleteButton {
       color: darkred;
     }
   }
