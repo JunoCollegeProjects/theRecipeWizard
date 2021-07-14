@@ -87,7 +87,7 @@ app.displayRecipeCards = resultArray => {
   }
 };
 
-app.displayModal = () => {
+app.displayModal = e => {
   const modalRoot = document.querySelector(".modalRoot");
   modalRoot.innerHTML = `
     <div class="modal">
@@ -101,12 +101,34 @@ app.displayModal = () => {
   // target modal, and add an event listener for the closeModal button
   const closeModalButton = modalRoot.querySelector(".closeModal");
   closeModalButton.addEventListener("click", app.closeModal);
+  // event listener for clicking off the modal
+  const currentModal = modalRoot.querySelector(".modal");
+  currentModal.addEventListener("click", app.clickOffToCloseModal);
+  // event listener for ESC Key
+  document.addEventListener("keydown", app.ESCKeyToCloseModal);
+};
+
+app.clickOffToCloseModal = e => {
+  if (
+    e.target.closest(".modal") === null &&
+    e.target.closest(".openModal") === null
+  ) {
+    app.closeModal();
+  }
+};
+
+app.ESCKeyToCloseModal = e => {
+  console.log(e);
+  if (e.key.toLowerCase() === "escape") {
+    app.closeModal();
+  }
 };
 
 app.closeModal = () => {
   const modalRoot = document.querySelector(".modalRoot");
   modalRoot.classList.remove("show");
-  // modalRoot.innerHTML = "";
+  // remove event listeners (3)
+  document.removeEventListener("keydown", app.ESCKeyToCloseModal);
 };
 
 // Init method that kicks everything off
