@@ -28,10 +28,7 @@ h1 {
 
 h2 {
   @include headerFont();
-}
-
-main {
-
+  text-align: center;
 }
 
 form {
@@ -61,30 +58,22 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-    ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      margin: 5px 0;
-      li {
-        border: 1px solid teal;
-        margin: 5px;
-        padding: 5px;
-        padding-right: 25px;
-        position: relative;
-        border-radius: 15px;
-        // display: inline-block;
-      }
-      li::after {
-        content: '\f057';
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        position: absolute;
-        right: 5px;
-        color: darkred;
-      }
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 5px 0;
+    li {
+      border: 1px solid teal;
+      margin: 5px;
+      padding: 5px;
+      border-radius: 15px;
+      // display: inline-block;
     }
-  
+    .deleteButton {
+      color: darkred;
+    }
+  }
 }
 
 button {
@@ -111,6 +100,31 @@ button {
     img {
       width: 100%;
     }
+  }
+}
+
+// for use in displaying modal
+.modalRoot.show {
+  display: inherit;
+}
+
+.modalRoot {
+  display: none;
+  .modal {
+    max-width: 800px;
+    width: 90%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border: 1px solid black;
+    border-radius: 15px;
+    box-shadow: 5px 5px 3px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: grey;
   }
 }
 

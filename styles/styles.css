@@ -1,4 +1,3 @@
-@charset "UTF-8";
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -273,6 +272,7 @@ h2 {
   font-weight: 700;
   color: black;
   font-size: 30px;
+  text-align: center;
 }
 
 form {
@@ -332,16 +332,9 @@ form input {
   border: 1px solid teal;
   margin: 5px;
   padding: 5px;
-  padding-right: 25px;
-  position: relative;
   border-radius: 15px;
 }
-#searchContainer ul li::after {
-  content: "";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  position: absolute;
-  right: 5px;
+#searchContainer ul .deleteButton {
   color: darkred;
 }
 
@@ -376,6 +369,39 @@ button {
 }
 .recipeResults li img {
   width: 100%;
+}
+
+.modalRoot.show {
+  display: inherit;
+}
+
+.modalRoot {
+  display: none;
+}
+.modalRoot .modal {
+  max-width: 800px;
+  width: 90%;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border: 1px solid black;
+  border-radius: 15px;
+  -webkit-box-shadow: 5px 5px 3px black;
+          box-shadow: 5px 5px 3px black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+  background-color: grey;
 }
 
 footer {
