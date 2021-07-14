@@ -30,13 +30,23 @@ app.getRecipe = userInput => {
 app.addIngredientToContainer = e => {
   e.preventDefault();
   const ingredientContainerUl = document.querySelector("#searchContainer ul");
-  const ingredientLiElement = document.createElement("li");
   const inputField = e.target.querySelector("input");
   const ingredient = inputField.value;
-  ingredientLiElement.textContent = ingredient;
-  ingredientContainerUl.appendChild(ingredientLiElement);
+  // if (ingredient == "") { 
+  //   alert("please enter an item");
+  // } else {};
+  ingredientContainerUl.innerHTML = `
+    <li>${ingredient} <span class="deleteButton"><i class="far fa-times-circle"></i></span></li>
+  `;
   inputField.value = "";
-};
+  const deleteButton = document.querySelector(".deleteButton");
+  deleteButton.addEventListener('click', app.removeLiElement);
+  };
+
+// Function to remove ingredient when user clicks on ingredient li element
+app.removeLiElement = (e) => {
+  e.target.remove(e.target);
+}
 
 app.parseIngredientsToQuery = () => {
   // Grabs search parameters in the form of an array
@@ -47,7 +57,7 @@ app.parseIngredientsToQuery = () => {
     if (i < searchParams.length - 1) {
       searchQuery += ",";
     }
-  }
+  };
   console.log(searchQuery);
 };
 
