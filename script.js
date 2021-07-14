@@ -1,12 +1,12 @@
 // === PSEUDO CODE ===
 // User types ingredients one at a time, pressing ENTER in between.
-// Ingredients are added to an "ingredient pool".
+// Ingredients are added to an "ingredient container".
 // When user presses submit, send data with API call.
 // API will return recipes as an array.
+// Return error if no results found
 // Loop through array and for each item, generate html for a recipe card and attach to DOM.
 // When user clicks on card, open up recipe in a modal.
 // When user presses the close button, the modal closes.
-// Return no results found
 
 // Create namespaced object
 const app = {};
@@ -120,10 +120,21 @@ app.init = () => {
   recipeSearch.addEventListener("submit", e => {
     e.preventDefault();
     const recipe = app.parseIngredientsToQuery();
-    app.getRecipe(recipe).then(data => {
-      console.log(data);
-      app.displayRecipeCards(data);
-    });
+    app
+      .getRecipe(recipe)
+      .then(data => {
+        if (data.length > 0) {
+          console.log(data);
+          app.displayRecipeCards(data);
+        } else {
+          throw new Error("No Results Found. Try some different ingredients?");
+        }
+      })
+      .catch(error => {
+        const cardContainer = document.querySelector(".recipeResults");
+        cardContainer.innerHTML = `<li>${error}</li>`;
+        console.log(error);
+      });
   });
 };
 
