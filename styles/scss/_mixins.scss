@@ -1,4 +1,4 @@
-@mixin headerFont($fontSize: 30px, $color: black) {
+@mixin headerFont($fontSize: 30px, $color: #ffac4e) {
   font-weight: 700;
   color: $color;
   font-size: $fontSize;

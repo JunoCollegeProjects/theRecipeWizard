@@ -241,7 +241,8 @@ html {
 }
 
 body {
-  background: #3eead3;
+  font-family: "Nunito", sans-serif;
+  background: #313030;
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -263,14 +264,14 @@ body {
 
 h1 {
   font-weight: 700;
-  color: black;
+  color: #ffac4e;
   font-size: 50px;
   text-align: center;
 }
 
 h2 {
   font-weight: 700;
-  color: black;
+  color: #ffac4e;
   font-size: 30px;
   text-align: center;
 }
@@ -283,6 +284,7 @@ form input {
   line-height: 2rem;
   padding: 3px;
   width: 100px;
+  border: 0;
 }
 
 #addIngredient {
@@ -297,13 +299,16 @@ form input {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 500px;
           flex: 1 1 500px;
-  margin-right: 10px;
-  border-radius: 15px;
+  margin-right: 5px;
+  border-radius: 5px;
+  border: 1px solid gray;
 }
 #addIngredient button {
   -webkit-box-flex: 0;
-      -ms-flex: 0 1 100px;
-          flex: 0 1 100px;
+      -ms-flex: 0 1 50px;
+          flex: 0 1 50px;
+  min-width: 50px;
+  font-size: 30px;
 }
 
 #searchContainer {
@@ -330,19 +335,23 @@ form input {
 }
 #searchContainer ul li {
   border: 1px solid teal;
+  color: #fff;
   margin: 5px;
   padding: 5px;
   border-radius: 15px;
 }
 #searchContainer ul .deleteButton {
-  color: darkred;
+  color: #ee3232;
 }
 
 button {
-  background-color: #3eea7d;
-  border: 1px solid #3eabea;
+  background-color: #19a885;
+  color: #fff;
+  border: 1px solid #148568;
   padding: 5px;
-  border-radius: 15px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: 18px;
 }
 
 .recipeResults {
@@ -360,9 +369,9 @@ button {
   background-color: aliceblue;
   -ms-flex-preferred-size: 300px;
       flex-basis: 300px;
-  border: 2px solid #4222f7;
-  -webkit-box-shadow: 5px 5px 3px #3eabea;
-          box-shadow: 5px 5px 3px #3eabea;
+  border: 2px solid #6d6d6d;
+  -webkit-box-shadow: 5px 5px 3px #148568;
+          box-shadow: 5px 5px 3px #148568;
   border-radius: 10px;
   padding: 20px;
   margin: 20px;
@@ -401,9 +410,12 @@ button {
       -ms-flex-align: center;
           align-items: center;
   padding: 20px;
-  background-color: grey;
+  background-color: #fff;
 }
 
 footer {
   text-align: center;
+  background: #000;
+  color: #fff;
+  padding: 10px 0;
 }

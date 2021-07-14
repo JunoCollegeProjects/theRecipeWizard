@@ -8,6 +8,7 @@
 }
 
 body {
+  font-family: 'Nunito', sans-serif;
   background: $primaryColor;
   min-height: 100vh;
   display: flex;
@@ -38,6 +39,7 @@ form {
     line-height: 2rem;
     padding: 3px;
     width: 100px;
+    border: 0;
   }
 }
 
@@ -46,11 +48,14 @@ form {
   justify-content: space-between;
   input {
     flex: 1 1 500px;
-    margin-right: 10px;
-    border-radius: 15px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
   }
   button {
-    flex: 0 1 100px;
+    flex: 0 1 50px;
+    min-width: 50px;
+    font-size: 30px;
   }
 }
 
@@ -65,22 +70,26 @@ form {
     margin: 5px 0;
     li {
       border: 1px solid teal;
+      color: #fff;
       margin: 5px;
       padding: 5px;
       border-radius: 15px;
       // display: inline-block;
     }
     .deleteButton {
-      color: darkred;
+      color: #ee3232;
     }
   }
 }
 
 button {
   background-color: $tertiaryColor;
+  color: #fff;
   border: 1px solid $secondaryColor;
   padding: 5px;
-  border-radius: 15px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: 18px;
 }
 
 .recipeResults {
@@ -92,10 +101,10 @@ button {
     // display: inline-block;
     background-color: aliceblue;
     flex-basis: 300px;
-    border: 2px solid rgb(66, 34, 247);
+    border: 2px solid #6d6d6d;
     box-shadow: 5px 5px 3px $secondaryColor;
     border-radius: 10px;
-    padding: 20px;
+    padding: 20px; 
     margin: 20px;
     img {
       width: 100%;
@@ -124,12 +133,15 @@ button {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: grey;
+    background-color: #fff;
   }
 }
 
 footer {
   text-align: center;
+  background: #000;
+  color: #fff;
+  padding: 10px 0;
 }
 
 // * {
