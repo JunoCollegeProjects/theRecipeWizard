@@ -105,16 +105,36 @@ app.parseIngredientsToQuery = () => {
 app.displayRecipeCards = resultArray => {
   const cardContainer = document.querySelector(".recipeResults");
   cardContainer.innerHTML = "";
+
   for (i = 0; i < resultArray.length; i++) {
-    const recipeLiElement = document.createElement("li");
-    recipeLiElement.innerHTML = `
-      <img src=${resultArray[i].image} alt="Recipe Card image for: ${resultArray[i].title}">
-      <h3>${resultArray[i].title}</h3>
-      <button class="openModal">Recipe</button>
-    `;
-    recipeLiElement.setAttribute("data-id", i);
-    cardContainer.appendChild(recipeLiElement);
+    if (resultArray[i].usedIngredientCount > 0) { 
+
+      const parseIngredientNames = (ingredientName) => {
+        const ingredientsArray = [];
+        for ({ name } of resultArray[i][ingredientName]) {
+          ingredientsArray.push(name);
+        };
+        return ingredientsArray.join(", ");
+      }
+      const usedIngredients = parseIngredientNames("usedIngredients");
+      const missedIngredients = parseIngredientNames("missedIngredients");
+
+      const recipeLiElement = document.createElement("li");
+      recipeLiElement.innerHTML = `
+        <img src="${resultArray[i].image}" alt="Recipe Card image for: ${resultArray[i].title}">
+        <h3>${resultArray[i].title}</h3>
+        <h4>Ingredients included from search:</h4> 
+        <p>${usedIngredients}</p>
+        <h4>Also needs:</h4> 
+        <p>${missedIngredients}</p>
+        <button class="openModal">Recipe</button>
+      `;
+      recipeLiElement.setAttribute("data-id", i);
+      cardContainer.appendChild(recipeLiElement);
+      console.log(resultArray[i]);
+    }
   }
+
   // add event listeners to each button
   const openModalButtons = document.querySelectorAll(".openModal");
   console.log(openModalButtons);
