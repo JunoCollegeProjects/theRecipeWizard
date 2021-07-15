@@ -149,6 +149,10 @@ button:hover {
     align-items: center;
     padding: 20px;
     background: #fff;
+    h2 {
+      // fixes issue where some API titles are lower case
+      text-transform: capitalize;
+    }
   }
 }
 
