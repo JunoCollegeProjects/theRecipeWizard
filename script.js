@@ -106,6 +106,7 @@ app.displayRecipeCards = resultArray => {
   const cardContainer = document.querySelector(".recipeResults");
   cardContainer.innerHTML = "";
   for (i = 0; i < resultArray.length; i++) {
+    console.log(resultArray[i]);
     const recipeLiElement = document.createElement("li");
     recipeLiElement.innerHTML = `
       <img src=${resultArray[i].image} alt="Recipe Card image for: ${resultArray[i].title}">
