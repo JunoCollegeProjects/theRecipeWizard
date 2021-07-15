@@ -57,6 +57,12 @@ app.removeLiElement = e => {
   liElement.remove();
 };
 
+// ### Function to remove all ingredients from the query ST 7/14/2021
+app.clearIngredientList = () => {
+  const ul = document.querySelector("#searchContainer ul")
+  ul.innerHTML = "";
+};
+
 app.parseIngredientsToQuery = () => {
   // Grabs search parameters in the form of an array
   const searchParams = document.querySelectorAll("#searchContainer ul li");
@@ -142,6 +148,10 @@ app.init = () => {
 
   const addButton = document.querySelector("#addIngredient");
   addButton.addEventListener("submit", app.addIngredientToContainer);
+
+  // ### ST NEW 7/14/2021
+  const removeAllButton = document.querySelector("#searchContainer");
+  removeAllButton.addEventListener("reset", app.clearIngredientList);
 
   recipeSearch.addEventListener("submit", e => {
     e.preventDefault();
