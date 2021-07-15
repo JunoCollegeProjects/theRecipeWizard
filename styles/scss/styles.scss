@@ -31,7 +31,7 @@ h2 {
 }
 
 h3 {
-  @include headerFont(25px, #842de7);
+  @include headerFont(25px, #000000);
 }
 
 form {
@@ -52,7 +52,9 @@ form {
     flex: 1 1 500px;
     margin-right: 5px;
     border-radius: 5px;
-    border: 1px solid gray;
+    border: 1px solid grey;
+    font-family: $primaryFont;
+
   }
   button {
     flex: 0 1 50px;
@@ -71,15 +73,21 @@ form {
     justify-content: center;
     margin: 5px 0;
     li {
-      border: 1px solid teal;
+      border: 1px dashed #ffffff7c;
+      background: #ffffff05;
       color: #fff;
       margin: 5px;
-      padding: 5px;
+      padding: 6px;
       border-radius: 15px;
       // display: inline-block;
     }
     .deleteButton {
       color: #ee3232;
+      padding-left: 5px;
+    }
+    .deleteButton:hover {
+      color: #d40b0b;
+      cursor: pointer;
     }
   }
 }
@@ -87,11 +95,17 @@ form {
 button {
   background-color: $tertiaryColor;
   color: #fff;
-  border: 1px solid $secondaryColor;
+  border: 0;
   padding: 5px;
   border-radius: 5px;
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 16px;
+  margin: 2px 0;
+}
+
+button:hover {
+  cursor: pointer;
+  background: $secondaryColor;
 }
 
 .recipeResults {
@@ -104,7 +118,7 @@ button {
     background-color: aliceblue;
     flex-basis: 300px;
     border: 2px solid #6d6d6d;
-    box-shadow: 5px 5px 3px $secondaryColor;
+    box-shadow: 5px 5px 3px #5f5f5f;
     border-radius: 10px;
     padding: 20px; 
     margin: 20px;
@@ -135,8 +149,17 @@ button {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #fff;
+    background: #fff;
   }
+}
+
+.openModal {
+  background: #f0592b;
+  transition: 0.2s;
+}
+
+.openModal:hover {
+  background: #d65027;
 }
 
 footer {
