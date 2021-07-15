@@ -86,7 +86,7 @@ app.displayRecipeCards = resultArray => {
   for (i = 0; i < resultArray.length; i++) {
     const recipeLiElement = document.createElement("li");
     recipeLiElement.innerHTML = `
-      <img src=${resultArray[i].image} alt="test alt">
+      <img src=${resultArray[i].image} alt="Recipe Card image for: ${resultArray[i].title}">
       <h3>${resultArray[i].title}</h3>
       <button class="openModal">Recipe</button>
     `;
@@ -101,18 +101,21 @@ app.displayRecipeCards = resultArray => {
   }
 };
 
-app.displayModal = e => {
+app.displayModal = async e => {
   const modalRoot = document.querySelector(".modalRoot");
   // get index to use with recipeObjectsArray
   const index = e.target.closest("li").dataset.id;
   // get recipe ID for a new API call
   const recipeID = app.recipeObjectsArray[index].id;
 
-  const recipeObj = app.getRecipeInfoByID(recipeID);
+  const recipeObj = await app.getRecipeInfoByID(recipeID);
+  console.log(recipeObj);
   modalRoot.innerHTML = `
     <div class="modal">
-      <h2>${RecipeObj.title}</h2>
-      <p>This is a test of the emergency broadcast system</p>
+      <h2>${recipeObj.title}</h2>
+      <img src=${recipeObj.image} alt="image for recipe: ${recipeObj.title}">
+      <h3>Summary</h3>
+      <p>${recipeObj.summary}</p>
       <button class="closeModal">Close</button>
     </div>
   `;
@@ -159,11 +162,7 @@ app.getRecipeInfoByID = id => {
   });
 
   // returns a promise
-  return fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-    });
+  return fetch(url).then(res => res.json());
 };
 
 // Init method that kicks everything off
