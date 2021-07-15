@@ -11,7 +11,8 @@
 // Create namespaced object
 const app = {};
 app.apiUrl = "https://api.spoonacular.com/recipes/findByIngredients";
-app.apiKey = "92cf896d674746e9b22c1a0c561637cd";
+// app.apiKey = "92cf896d674746e9b22c1a0c561637cd"; //gavynholt@gmail.com
+app.apiKey = "4cf2ce5f469347068595ffb2fdb1bde9"; //gholtdrums@gmail.com
 
 // Recipe Card Result Array
 app.recipeObjectsArray = [];
@@ -28,6 +29,27 @@ app.getRecipe = userInput => {
 
   // returns a promise
   return fetch(url).then(res => res.json());
+};
+
+app.handleSearchForm = e => {
+  e.preventDefault();
+  // parse individual <li>'s into a CSV for the API
+  const recipe = app.parseIngredientsToQuery();
+  app
+    .getRecipe(recipe)
+    .then(data => {
+      if (data.length > 0) {
+        app.recipeObjectsArray = data;
+        app.displayRecipeCards(data);
+      } else {
+        throw new Error("No Results Found. Try some different ingredients?");
+      }
+    })
+    .catch(error => {
+      const cardContainer = document.querySelector(".recipeResults");
+      cardContainer.innerHTML = `<li>${error}</li>`;
+      console.log(error);
+    });
 };
 
 app.addIngredientToContainer = e => {
@@ -172,8 +194,7 @@ app.getRecipeInfoByID = id => {
 
 // Init method that kicks everything off
 app.init = () => {
-  const recipeSearch = document.querySelector("#searchContainer");
-
+  // event listener for add ingredient button
   const addButton = document.querySelector("#addIngredient");
   addButton.addEventListener("submit", app.addIngredientToContainer);
 
@@ -181,24 +202,21 @@ app.init = () => {
   const removeAllButton = document.querySelector("#searchContainer");
   removeAllButton.addEventListener("reset", app.clearIngredientList);
 
-  recipeSearch.addEventListener("submit", e => {
-    e.preventDefault();
-    const recipe = app.parseIngredientsToQuery();
-    app
-      .getRecipe(recipe)
-      .then(data => {
-        if (data.length > 0) {
-          app.recipeObjectsArray = data;
-          app.displayRecipeCards(data);
-        } else {
-          throw new Error("No Results Found. Try some different ingredients?");
-        }
-      })
-      .catch(error => {
-        const cardContainer = document.querySelector(".recipeResults");
-        cardContainer.innerHTML = `<li>${error}</li>`;
-        console.log(error);
-      });
+  // event listener to search for recipes
+  const recipeSearch = document.querySelector("#searchContainer");
+  recipeSearch.addEventListener("submit", app.handleSearchForm);
+
+  // event listener for input field to listen for enter key
+  const inputField = document.querySelector("#recipe");
+  // used function() format instead of () => format to allow use of "this" to target input field
+  inputField.addEventListener("keydown", function (e) {
+    const ingredientLiCount = document
+      .querySelector("#searchContainer ul")
+      .getElementsByTagName("li").length;
+    // if enter is pressed and input field is empty and container has li's(ingredients), search for recipes
+    if (e.key.toLowerCase() === "enter" && this.value == "" && ingredientLiCount > 0) {
+      app.handleSearchForm(e);
+    }
   });
 };
 
