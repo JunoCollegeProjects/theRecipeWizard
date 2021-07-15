@@ -30,18 +30,22 @@ app.getRecipe = userInput => {
 app.addIngredientToContainer = e => {
   e.preventDefault();
   const ingredientContainerUl = document.querySelector("#searchContainer ul");
-  const ingredientLiElement = document.createElement("li");
   const inputField = e.target.querySelector("input");
-  const ingredient = inputField.value.trim();
-  console.log(ingredient);
-  if (ingredient != "") {
-    ingredientLiElement.innerText = ingredient;
-    const deleteIngredientButton = document.createElement("span");
-    deleteIngredientButton.classList.add("deleteButton");
-    deleteIngredientButton.innerHTML = '<i class="far fa-times-circle"></i>';
-    ingredientLiElement.append(deleteIngredientButton);
-    ingredientContainerUl.appendChild(ingredientLiElement);
-    deleteIngredientButton.addEventListener("click", app.removeLiElement);
+  // create an array for possible multiple inputs, split by commas and trim each item of any whitespace
+  const ingredientArray = inputField.value.split(",").map(item => item.trim());
+  console.log(ingredientArray);
+  for (ingredient of ingredientArray) {
+    if (ingredient != "") {
+      console.log(ingredient);
+      const ingredientLiElement = document.createElement("li");
+      ingredientLiElement.innerText = ingredient;
+      const deleteIngredientButton = document.createElement("span");
+      deleteIngredientButton.classList.add("deleteButton");
+      deleteIngredientButton.innerHTML = '<i class="far fa-times-circle"></i>';
+      ingredientLiElement.append(deleteIngredientButton);
+      ingredientContainerUl.appendChild(ingredientLiElement);
+      deleteIngredientButton.addEventListener("click", app.removeLiElement);
+    }
   }
   // clear the input no matter what
   inputField.value = "";
@@ -89,6 +93,7 @@ app.displayRecipeCards = resultArray => {
 
 app.displayModal = e => {
   const modalRoot = document.querySelector(".modalRoot");
+
   modalRoot.innerHTML = `
     <div class="modal">
       <h2> Test Modal, Yo! </h2>
@@ -98,21 +103,19 @@ app.displayModal = e => {
   `;
   // add class to modalRoot to display
   modalRoot.classList.add("show");
-  // target modal, and add an event listener for the closeModal button
+
+  // event listener for the closeModal button
   const closeModalButton = modalRoot.querySelector(".closeModal");
   closeModalButton.addEventListener("click", app.closeModal);
   // event listener for clicking off the modal
   const currentModal = modalRoot.querySelector(".modal");
-  currentModal.addEventListener("click", app.clickOffToCloseModal);
+  document.addEventListener("click", app.clickOffToCloseModal);
   // event listener for ESC Key
   document.addEventListener("keydown", app.ESCKeyToCloseModal);
 };
 
 app.clickOffToCloseModal = e => {
-  if (
-    e.target.closest(".modal") === null &&
-    e.target.closest(".openModal") === null
-  ) {
+  if (e.target.closest(".modal") === null && e.target.closest(".openModal") === null) {
     app.closeModal();
   }
 };
@@ -128,12 +131,13 @@ app.closeModal = () => {
   const modalRoot = document.querySelector(".modalRoot");
   modalRoot.classList.remove("show");
   // remove event listeners (3)
+  modalRoot.querySelector(".closeModal").removeEventListener("click", app.closeModal);
+  document.removeEventListener("click", app.clickOffToCloseModal);
   document.removeEventListener("keydown", app.ESCKeyToCloseModal);
 };
 
 // Init method that kicks everything off
 app.init = () => {
-  console.log("Woohoo initialized!");
   const recipeSearch = document.querySelector("#searchContainer");
 
   const addButton = document.querySelector("#addIngredient");
