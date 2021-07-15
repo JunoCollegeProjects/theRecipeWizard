@@ -114,8 +114,13 @@ app.displayModal = async e => {
     <div class="modal">
       <h2>${recipeObj.title}</h2>
       <img src=${recipeObj.image} alt="image for recipe: ${recipeObj.title}">
+      <p>Time to make: ${recipeObj.readyInMinutes} minutes</p>
+      <p>Servings: ${recipeObj.servings}</p>
       <h3>Summary</h3>
       <p>${recipeObj.summary}</p>
+      <h3>Instructions</h3>
+      <p>${recipeObj.instructions}</p>
+      <a href="${recipeObj.spoonacularSourceUrl}" target="_blank">Click Here for link to full recipe</a>
       <button class="closeModal">Close</button>
     </div>
   `;

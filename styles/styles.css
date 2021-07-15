@@ -276,6 +276,13 @@ h2 {
   text-align: center;
 }
 
+h3 {
+  font-weight: 700;
+  color: #842de7;
+  font-size: 25px;
+  text-align: center;
+}
+
 form {
   max-width: 600px;
   margin: 0 auto;

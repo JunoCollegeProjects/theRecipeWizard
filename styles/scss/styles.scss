@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: $primaryFont;
   background: $primaryColor;
   min-height: 100vh;
   display: flex;
@@ -24,12 +24,14 @@ body {
 
 h1 {
   @include headerFont(50px);
-  text-align: center;
 }
 
 h2 {
   @include headerFont();
-  text-align: center;
+}
+
+h3 {
+  @include headerFont(25px, #842de7);
 }
 
 form {
