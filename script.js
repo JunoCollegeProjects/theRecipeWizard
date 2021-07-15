@@ -13,6 +13,9 @@ const app = {};
 app.apiUrl = "https://api.spoonacular.com/recipes/findByIngredients";
 app.apiKey = "92cf896d674746e9b22c1a0c561637cd";
 
+// Recipe Card Result Array
+app.recipeObjectsArray = [];
+
 app.getRecipe = userInput => {
   // Establish connection with API
   const url = new URL(app.apiUrl);
@@ -59,7 +62,7 @@ app.removeLiElement = e => {
 
 // ### Function to remove all ingredients from the query ST 7/14/2021
 app.clearIngredientList = () => {
-  const ul = document.querySelector("#searchContainer ul")
+  const ul = document.querySelector("#searchContainer ul");
   ul.innerHTML = "";
 };
 
@@ -80,13 +83,14 @@ app.parseIngredientsToQuery = () => {
 app.displayRecipeCards = resultArray => {
   const cardContainer = document.querySelector(".recipeResults");
   cardContainer.innerHTML = "";
-  for (item of resultArray) {
+  for (i = 0; i < resultArray.length; i++) {
     const recipeLiElement = document.createElement("li");
     recipeLiElement.innerHTML = `
-      <img src=${item.image} alt="test alt">
-      <h3>${item.title}</h3>
+      <img src=${resultArray[i].image} alt="test alt">
+      <h3>${resultArray[i].title}</h3>
       <button class="openModal">Recipe</button>
     `;
+    recipeLiElement.setAttribute("data-id", i);
     cardContainer.appendChild(recipeLiElement);
   }
   // add event listeners to each button
@@ -99,10 +103,15 @@ app.displayRecipeCards = resultArray => {
 
 app.displayModal = e => {
   const modalRoot = document.querySelector(".modalRoot");
+  // get index to use with recipeObjectsArray
+  const index = e.target.closest("li").dataset.id;
+  // get recipe ID for a new API call
+  const recipeID = app.recipeObjectsArray[index].id;
 
+  const recipeObj = app.getRecipeInfoByID(recipeID);
   modalRoot.innerHTML = `
     <div class="modal">
-      <h2> Test Modal, Yo! </h2>
+      <h2>${RecipeObj.title}</h2>
       <p>This is a test of the emergency broadcast system</p>
       <button class="closeModal">Close</button>
     </div>
@@ -142,6 +151,21 @@ app.closeModal = () => {
   document.removeEventListener("keydown", app.ESCKeyToCloseModal);
 };
 
+app.getRecipeInfoByID = id => {
+  const url = new URL(`https://api.spoonacular.com/recipes/${id}/information`);
+  url.search = new URLSearchParams({
+    apiKey: app.apiKey,
+    includeNutrition: false,
+  });
+
+  // returns a promise
+  return fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+    });
+};
+
 // Init method that kicks everything off
 app.init = () => {
   const recipeSearch = document.querySelector("#searchContainer");
@@ -149,7 +173,7 @@ app.init = () => {
   const addButton = document.querySelector("#addIngredient");
   addButton.addEventListener("submit", app.addIngredientToContainer);
 
-  // ### ST NEW 7/14/2021
+  // event listener to remove all ingredient li's
   const removeAllButton = document.querySelector("#searchContainer");
   removeAllButton.addEventListener("reset", app.clearIngredientList);
 
@@ -160,7 +184,7 @@ app.init = () => {
       .getRecipe(recipe)
       .then(data => {
         if (data.length > 0) {
-          console.log(data);
+          app.recipeObjectsArray = data;
           app.displayRecipeCards(data);
         } else {
           throw new Error("No Results Found. Try some different ingredients?");
