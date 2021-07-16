@@ -165,6 +165,7 @@ app.displayModal = async e => {
       <p>${recipeObj.instructions}</p>
       <a href="${recipeObj.spoonacularSourceUrl}" target="_blank">Click Here for link to full recipe</a>
       <button class="closeModal">Close</button>
+      <button class="printModal">Print</button>
     </div>
   `;
   // add class to modalRoot to display
@@ -201,6 +202,17 @@ app.closeModal = () => {
   document.removeEventListener("click", app.clickOffToCloseModal);
   document.removeEventListener("keydown", app.ESCKeyToCloseModal);
 };
+
+// ST 7/15/2021 
+app.printRecipe = () => {
+  const modalToPrint = document.querySelector(".modalRoot");
+  newWin = window.open("");
+  newWin.document.write(modalToPrint.outerHTML);
+  newWin.print();
+  newWin.close();
+}
+
+
 
 app.getRecipeInfoByID = id => {
   const url = new URL(`https://api.spoonacular.com/recipes/${id}/information`);

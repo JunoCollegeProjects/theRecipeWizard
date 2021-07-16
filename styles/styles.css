@@ -334,6 +334,31 @@ form input {
       -ms-flex-align: center;
           align-items: center;
 }
+#searchContainer button[type=reset] {
+  background: transparent;
+  padding: 0;
+  margin-top: 8px;
+  width: auto;
+  height: auto;
+  color: #fff;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  font-size: 16px;
+  text-transform: none;
+}
+#searchContainer button[type=reset] .binIcon {
+  color: #ee3232;
+}
+#searchContainer button[type=reset]:hover {
+  color: #d40b0b;
+}
+#searchContainer button[type=reset]:hover .binIcon {
+  color: #d40b0b;
+}
+#searchContainer button[type=submit] {
+  font-size: 20px;
+  padding: 10px;
+}
 #searchContainer ul {
   list-style: none;
   display: -webkit-box;
@@ -344,7 +369,7 @@ form input {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin: 5px 0;
+  margin: 0;
 }
 #searchContainer ul li {
   border: 1px dashed #ffffff7c;
@@ -364,6 +389,7 @@ form input {
 }
 
 button {
+  font-family: "Nunito", sans-serif;
   background-color: #19a885;
   color: #fff;
   border: 0;

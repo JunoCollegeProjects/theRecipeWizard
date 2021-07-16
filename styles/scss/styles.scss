@@ -66,12 +66,36 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  button[type="reset"] {
+    background: transparent;
+    padding: 0;
+    margin-top: 8px;
+    width: auto;
+    height: auto;
+    color: #fff;
+    align-self: flex-end;
+    font-size: 16px;
+    text-transform: none;
+    .binIcon {
+      color: #ee3232;
+    }
+  }
+  button[type="reset"]:hover {
+    color: #d40b0b;
+    .binIcon {
+      color: #d40b0b;
+    }
+  }
+  button[type="submit"] {
+    font-size: 20px;
+    padding: 10px;
+  }
   ul {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 5px 0;
+    margin: 0;
     li {
       border: 1px dashed #ffffff7c;
       background: #ffffff05;
@@ -93,6 +117,7 @@ form {
 }
 
 button {
+  font-family: $primaryFont;
   background-color: $tertiaryColor;
   color: #fff;
   border: 0;
@@ -181,5 +206,5 @@ footer {
 }
 
 // * {
-//   outline: 1px solid red;
+//   outline: 1px solid pink;
 // }
