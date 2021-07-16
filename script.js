@@ -64,6 +64,7 @@ app.addIngredientToContainer = e => {
     if (ingredient != "") {
       console.log(ingredient);
       const ingredientLiElement = document.createElement("li");
+      ingredientLiElement.setAttribute("tabindex", 0);
       ingredientLiElement.innerText = ingredient;
       const deleteIngredientButton = document.createElement("span");
       deleteIngredientButton.classList.add("deleteButton");
