@@ -291,6 +291,11 @@ h3 {
   padding: 5vw 0;
 }
 
+p {
+  color: #2b2b2b;
+  line-height: 1.5;
+}
+
 main {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -394,7 +399,8 @@ form input {
   color: #ee3232;
   padding-left: 5px;
 }
-#searchContainer ul .deleteButton:hover {
+#searchContainer ul .deleteButton:hover,
+#searchContainer ul .deleteButton:focus {
   color: #d40b0b;
   cursor: pointer;
 }
@@ -478,6 +484,23 @@ button:focus {
   padding: 20px;
   background: #fff;
 }
+.modalRoot .modal a {
+  color: #ea593e;
+  text-decoration: none;
+}
+.modalRoot .modal a:hover,
+.modalRoot .modal a:focus {
+  text-decoration: underline;
+}
+.modalRoot .modal button {
+  background: #f0592b;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+.modalRoot .modal button:hover,
+.modalRoot .modal button:focus {
+  background: #d65027;
+}
 .modalRoot img {
   height: 300px;
 }
@@ -488,7 +511,8 @@ button:focus {
   transition: 0.2s;
 }
 
-.openModal:hover {
+.openModal:hover,
+.openModal:focus {
   background: #d65027;
 }
 
@@ -501,6 +525,9 @@ footer {
 footer a {
   color: #ea593e;
   text-decoration: none;
+}
+footer p {
+  color: #fff;
 }
 
 @media print {
