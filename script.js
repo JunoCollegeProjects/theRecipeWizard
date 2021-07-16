@@ -108,15 +108,14 @@ app.displayRecipeCards = resultArray => {
   cardContainer.innerHTML = "";
 
   for (i = 0; i < resultArray.length; i++) {
-    if (resultArray[i].usedIngredientCount > 0) { 
-
-      const parseIngredientNames = (ingredientName) => {
+    if (resultArray[i].usedIngredientCount > 0) {
+      const parseIngredientNames = ingredientName => {
         const ingredientsArray = [];
         for ({ name } of resultArray[i][ingredientName]) {
           ingredientsArray.push(name);
-        };
+        }
         return ingredientsArray.join(", ");
-      }
+      };
       const usedIngredients = parseIngredientNames("usedIngredients");
       const missedIngredients = parseIngredientNames("missedIngredients");
 

@@ -128,7 +128,8 @@ button {
   margin: 2px 0;
 }
 
-button:hover {
+button:hover,
+button:focus {
   cursor: pointer;
   background: $secondaryColor;
 }
@@ -141,7 +142,7 @@ button:hover {
   h3 {
     // fixes issue where some API titles are lower case
     text-transform: capitalize;
-    }
+  }
   li {
     // display: inline-block;
     background-color: aliceblue;
