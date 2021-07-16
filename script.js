@@ -71,7 +71,17 @@ app.addIngredientToContainer = e => {
       deleteIngredientButton.innerHTML = '<i class="far fa-times-circle"></i>';
       ingredientLiElement.append(deleteIngredientButton);
       ingredientContainerUl.appendChild(ingredientLiElement);
+      // event listener for red delete button click
       deleteIngredientButton.addEventListener("click", app.removeLiElement);
+      // event listener for DELETE keydown press to delete li
+      ingredientLiElement.addEventListener("keydown", function (e) {
+        console.log("DELETE?:", e);
+        if (e.key.toLowerCase() == "delete") {
+          // if ul has a next sibling, move focus forward before deleting current li (? mark prevents error for case of single li)
+          e.target.nextElementSibling?.focus();
+          app.removeLiElement(e);
+        }
+      });
     }
   }
   // clear the input no matter what
