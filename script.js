@@ -220,7 +220,7 @@ app.getRecipeInfoByID = id => {
   const url = new URL(`https://api.spoonacular.com/recipes/${id}/information`);
   url.search = new URLSearchParams({
     apiKey: app.apiKey,
-    includeNutrition: false,
+    includeNutrition: true,
   });
 
   // returns a promise
