@@ -162,13 +162,17 @@ app.displayModal = async e => {
       <p>${recipeObj.summary}</p>
       <h3>Instructions</h3>
       <p>${recipeObj.instructions}</p>
-      <a href="${recipeObj.spoonacularSourceUrl}" target="_blank">Click Here for link to full recipe</a>
-      <button class="closeModal">Close</button>
-      <button class="printModal">Print</button>
+      <a href="${recipeObj.spoonacularSourceUrl}" target="_blank" class="noPrint">Click Here for link to full recipe</a>
+      <button class="closeModal noPrint">Close</button>
+      <button class="printModal noPrint">Print</button>
     </div>
   `;
   // add class to modalRoot to display
   modalRoot.classList.add("show");
+
+  // event listener for print button
+  const printButton = modalRoot.querySelector(".printModal");
+  printButton.addEventListener("click", app.printRecipe);
 
   // event listener for the closeModal button
   const closeModalButton = modalRoot.querySelector(".closeModal");
@@ -202,16 +206,15 @@ app.closeModal = () => {
   document.removeEventListener("keydown", app.ESCKeyToCloseModal);
 };
 
-// ST 7/15/2021 
+// ST 7/15/2021
 app.printRecipe = () => {
   const modalToPrint = document.querySelector(".modalRoot");
   newWin = window.open("");
+  newWin.document.write('<head><link rel="stylesheet" href="./styles/styles.css" /></head>');
   newWin.document.write(modalToPrint.outerHTML);
   newWin.print();
   newWin.close();
-}
-
-
+};
 
 app.getRecipeInfoByID = id => {
   const url = new URL(`https://api.spoonacular.com/recipes/${id}/information`);

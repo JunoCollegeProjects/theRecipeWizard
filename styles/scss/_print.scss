@@ -1,0 +1,23 @@
+@media print {
+  .modalRoot {
+    .modal {
+      width: 100%;
+      position: static;
+      transform: none;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background: #fff;
+    }
+    img {
+      height: 300px;
+    }
+  }
+  .noPrint {
+    display: none;
+  }
+}

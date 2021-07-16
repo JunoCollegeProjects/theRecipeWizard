@@ -502,3 +502,35 @@ footer a {
   color: #ea593e;
   text-decoration: none;
 }
+
+@media print {
+  .modalRoot .modal {
+    width: 100%;
+    position: static;
+    -webkit-transform: none;
+            transform: none;
+    border: none;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 20px;
+    background: #fff;
+  }
+  .modalRoot img {
+    height: 300px;
+  }
+
+  .noPrint {
+    display: none;
+  }
+}
