@@ -374,7 +374,8 @@ button {
   margin: 2px 0;
 }
 
-button:hover {
+button:hover,
+button:focus {
   cursor: pointer;
   background: #148568;
 }
