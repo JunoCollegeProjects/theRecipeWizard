@@ -19,7 +19,8 @@ body {
 .wrapper {
   max-width: 1200px;
   width: 90%;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h1 {
@@ -32,6 +33,14 @@ h2 {
 
 h3 {
   @include headerFont(25px, #000000);
+}
+.container {
+  padding: 5vw 0;
+}
+
+main {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 form {
@@ -48,6 +57,7 @@ form {
 #addIngredient {
   display: flex;
   justify-content: space-between;
+  margin: 10px auto;
   input {
     flex: 1 1 500px;
     margin-right: 5px;
@@ -69,7 +79,6 @@ form {
   button[type="reset"] {
     background: transparent;
     padding: 0;
-    margin-top: 8px;
     width: auto;
     height: auto;
     color: #fff;
@@ -95,6 +104,7 @@ form {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 10px 0;
     margin: 0;
     li {
       border: 1px dashed #ffffff7c;

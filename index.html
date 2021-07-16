@@ -12,31 +12,31 @@
   </head>
 
   <body>
-    <header class="wrapper">
-      <h1>The Recipe Wizard</h1>
-    </header>
-
-    <main class="wrapper">
-      <form action="submit" id="addIngredient">
-        <label for="recipe" class="sr-only">Enter Ingredients:</label>
-        <input type="text" id="recipe" placeholder="Enter Ingredients" />
-        <button type="submit">+</button>
-      </form>
-
-      <form action="" id="searchContainer">
-        <button type="reset">Clear Ingredients <span class="binIcon"><i class="far fa-trash-alt"></i></span></button>
-        <ul>
-          <!-- Dynamic Content -->
-        </ul>
-        <button type="submit">Find Recipes</button>
-      </form>
-
-      <div class="container">
-        <ul class="recipeResults"></ul>
-      </div>
-
-      <div class="modalRoot"></div>
-    </main>
+    <div class="container">
+      <header class="wrapper">
+        <h1>The Recipe Wizard</h1>
+      </header>
+      <main class="wrapper">
+        <form action="submit" id="addIngredient">
+          <label for="recipe" class="sr-only">Enter Ingredients:</label>
+          <input type="text" id="recipe" placeholder="Enter Ingredients" />
+          <button type="submit">+</button>
+        </form>
+        <form action="" id="searchContainer">
+          <button type="reset">
+            Clear All <span class="binIcon"><i class="far fa-trash-alt"></i></span>
+          </button>
+          <ul>
+            <!-- Dynamic Content -->
+          </ul>
+          <button type="submit">Find Recipes</button>
+        </form>
+        <div>
+          <ul class="recipeResults"></ul>
+        </div>
+        <div class="modalRoot"></div>
+      </main>
+    </div>
 
     <footer>
       <p>
