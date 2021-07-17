@@ -285,6 +285,7 @@ h3 {
   font-size: 25px;
   text-align: center;
   font-family: Georgia, "Times New Roman", Times, serif;
+  margin: 15px 0 10px;
 }
 
 .container {
@@ -483,6 +484,17 @@ button:focus {
           align-items: center;
   padding: 20px;
   background: #fff;
+}
+.modalRoot .modal h3, .modalRoot .modal h3 + p {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+.modalRoot .modal ol, .modalRoot .modal ul {
+  line-height: 1.5;
+  color: #2b2b2b;
+  list-style-position: inside;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
 }
 .modalRoot .modal a {
   color: #ea593e;

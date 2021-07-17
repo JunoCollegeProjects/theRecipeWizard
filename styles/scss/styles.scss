@@ -33,7 +33,9 @@ h2 {
 
 h3 {
   @include headerFont(25px, #000000);
+  margin: 15px 0 10px;
 }
+
 .container {
   padding: 5vw 0;
 }
@@ -196,6 +198,15 @@ button:focus {
     align-items: center;
     padding: 20px;
     background: #fff;
+    h3, h3 + p {
+      align-self: flex-start;
+    }
+    ol, ul {
+      line-height: 1.5;
+      color: #2b2b2b;
+      list-style-position: inside;
+      align-self: flex-start;
+    }
     a {
       color: #ea593e;
       text-decoration: none;

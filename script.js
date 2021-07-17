@@ -12,8 +12,8 @@
 const app = {};
 app.apiUrl = "https://api.spoonacular.com/recipes/findByIngredients";
 // app.apiKey = "92cf896d674746e9b22c1a0c561637cd"; //gavynholt@gmail.com
-// app.apiKey = "4cf2ce5f469347068595ffb2fdb1bde9"; //gholtdrums@gmail.com
-app.apiKey = "b3d56d5ae01547b1a1ab1a556e0974fb"; // sherryyyt@gmail.com
+app.apiKey = "4cf2ce5f469347068595ffb2fdb1bde9"; //gholtdrums@gmail.com
+// app.apiKey = "b3d56d5ae01547b1a1ab1a556e0974fb"; // sherryyyt@gmail.com
 
 // Recipe Card Result Array
 app.recipeObjectsArray = [];
@@ -163,12 +163,34 @@ app.displayModal = async e => {
 
   const recipeObj = await app.getRecipeInfoByID(recipeID);
   console.log(recipeObj);
+  
+  const nutritionUlElement = document.createElement("ul");
+  for ({ amount, unit, name } of recipeObj.nutrition.ingredients) {
+    const nutritionLiElement = document.createElement("li");
+    nutritionLiElement.textContent = `${amount}${unit} of ${name}`;
+    nutritionUlElement.appendChild(nutritionLiElement);
+  }
+
+  const nutrientsUlElement = document.createElement("ul");
+  const nutrientsArray = ["Calories", "Protein", "Fat", "Carbohydrates"];
+    for ({amount, unit, name } of recipeObj.nutrition.nutrients) { 
+      if (nutrientsArray.includes(name)) {
+        const nutrientsLiElement = document.createElement("li");
+        nutrientsLiElement.textContent = `${amount}${unit} of ${name}`;
+        nutrientsUlElement.appendChild(nutrientsLiElement);
+      }
+    }
+
   modalRoot.innerHTML = `
     <div class="modal">
       <h2>${recipeObj.title}</h2>
       <img src=${recipeObj.image} alt="image for recipe: ${recipeObj.title}">
       <p>Time to make: ${recipeObj.readyInMinutes} minutes</p>
       <p>Servings: ${recipeObj.servings}</p>
+      <h3>Ingredients</h3>
+      ${nutritionUlElement.outerHTML}
+      <h3>Nutrients at a Glance</h3>
+      ${nutrientsUlElement.outerHTML}
       <h3>Summary</h3>
       <p>${recipeObj.summary}</p>
       <h3>Instructions</h3>
@@ -178,6 +200,7 @@ app.displayModal = async e => {
       <button class="printModal noPrint">Print</button>
     </div>
   `;
+
   // add class to modalRoot to display
   modalRoot.classList.add("show");
 
