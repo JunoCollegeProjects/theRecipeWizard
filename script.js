@@ -32,6 +32,18 @@ app.getRecipe = (userInput) => {
   return fetch(url).then((res) => res.json());
 };
 
+// access API for more detailed recipe info, for use with Modal
+app.getRecipeInfoByID = (id) => {
+  const url = new URL(`https://api.spoonacular.com/recipes/${id}/information`);
+  url.search = new URLSearchParams({
+    apiKey: app.apiKey,
+    includeNutrition: true,
+  });
+
+  // returns a promise
+  return fetch(url).then((res) => res.json());
+};
+
 app.handleSearchForm = (e) => {
   e.preventDefault();
   // parse individual <li>'s into a CSV for the API
@@ -274,18 +286,6 @@ app.displayModal = async (e) => {
   document.addEventListener("click", clickOffToCloseModal);
   // event listener for ESC Key
   document.addEventListener("keydown", ESCKeyToCloseModal);
-};
-
-// access API for more detailed recipe info, for use with Modal
-app.getRecipeInfoByID = (id) => {
-  const url = new URL(`https://api.spoonacular.com/recipes/${id}/information`);
-  url.search = new URLSearchParams({
-    apiKey: app.apiKey,
-    includeNutrition: true,
-  });
-
-  // returns a promise
-  return fetch(url).then((res) => res.json());
 };
 
 // Init method that kicks everything off
