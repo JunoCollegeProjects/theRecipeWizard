@@ -218,6 +218,17 @@ app.displayModal = async e => {
 
   // add class to modalRoot to display
   modalRoot.classList.add("show");
+  const currentModal = modalRoot.querySelector(".modal");
+  currentModal.style.top = `${Math.round(window.scrollY)}px`;
+
+  // event listener to handle scrolling upwards for modals
+  document.addEventListener("scroll", function() {
+    const currentScrollPosition = Math.round(window.scrollY);
+    const modalScrollPosition = parseInt(currentModal.style.top, 10);
+    if (currentScrollPosition < modalScrollPosition) {
+      currentModal.style.top = `${currentScrollPosition}px`;
+    }
+  });
 
   // event listener for print button
   const printButton = modalRoot.querySelector(".printModal");
@@ -227,7 +238,6 @@ app.displayModal = async e => {
   const closeModalButton = modalRoot.querySelector(".closeModal");
   closeModalButton.addEventListener("click", app.closeModal);
   // event listener for clicking off the modal
-  const currentModal = modalRoot.querySelector(".modal");
   document.addEventListener("click", app.clickOffToCloseModal);
   // event listener for ESC Key
   document.addEventListener("keydown", app.ESCKeyToCloseModal);
