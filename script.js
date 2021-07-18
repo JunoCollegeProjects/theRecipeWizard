@@ -181,11 +181,26 @@ app.displayModal = async e => {
       }
     }
 
+  // Function to convert mins to hours
+  const convertMinutes = (readyInMinutes) => {
+    if (readyInMinutes >= 60) {
+      const hour = Math.floor(readyInMinutes / 60);
+      const minute = readyInMinutes % 60;
+      const hourString = hour > 1? "hours" : "hour";
+      const minuteString = minute == 1? "minute" : "minutes";
+      return `${hour} ${hourString} and ${minute} ${minuteString}`;
+    } else {
+      const minuteString = readyInMinutes == 1 ? "minute" : "minutes";
+      return `${readyInMinutes} ${minuteString}`;
+    }
+  }
+  const stringHoursMinutes = convertMinutes(recipeObj.readyInMinutes);
+
   modalRoot.innerHTML = `
     <div class="modal">
       <h2>${recipeObj.title}</h2>
       <img src=${recipeObj.image} alt="image for recipe: ${recipeObj.title}">
-      <p>Time to make: ${recipeObj.readyInMinutes} minutes</p>
+      <p>Time to make: ${stringHoursMinutes}</p>
       <p>Servings: ${recipeObj.servings}</p>
       <h3>Ingredients</h3>
       ${nutritionUlElement.outerHTML}
@@ -240,7 +255,6 @@ app.closeModal = () => {
   document.removeEventListener("keydown", app.ESCKeyToCloseModal);
 };
 
-// ST 7/15/2021
 app.printRecipe = () => {
   const modalToPrint = document.querySelector(".modalRoot");
   newWin = window.open("");
