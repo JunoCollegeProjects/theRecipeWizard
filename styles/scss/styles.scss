@@ -8,6 +8,7 @@
 }
 
 body {
+  font-family: $primaryFont;
   background: $primaryColor;
   min-height: 100vh;
   display: flex;
@@ -18,17 +19,47 @@ body {
 .wrapper {
   max-width: 1200px;
   width: 90%;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h1 {
   @include headerFont(50px);
-  text-align: center;
 }
 
 h2 {
   @include headerFont();
-  text-align: center;
+  margin: 15px 0 10px;
+}
+
+h3 {
+  @include headerFont(20px, #000000);
+  margin: 15px 0 10px;
+}
+
+.container {
+  padding: 5vw 0;
+}
+
+p {
+  color: $pColor;
+  line-height: 1.5;
+}
+
+main {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.instructions {
+  margin: 0 auto 1vw;
+  max-width: 800px;
+
+  p {
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+  }
 }
 
 form {
@@ -36,51 +67,107 @@ form {
   margin: 0 auto;
   input {
     line-height: 2rem;
-    padding: 3px;
+    padding: 3px 10px;
     width: 100px;
+    border: 0;
   }
 }
 
-#addIngredient {
+.addIngredient {
   display: flex;
   justify-content: space-between;
+  margin: 10px auto;
   input {
     flex: 1 1 500px;
-    margin-right: 10px;
-    border-radius: 15px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    font-family: $primaryFont;
   }
   button {
-    flex: 0 1 100px;
+    flex: 0 1 50px;
+    min-width: 50px;
+    font-size: 30px;
   }
 }
 
-#searchContainer {
+.searchContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  button[type="reset"] {
+    background: transparent;
+    padding: 5px;
+    width: auto;
+    height: auto;
+    color: #fff;
+    align-self: flex-end;
+    font-size: 16px;
+    text-transform: none;
+    .binIcon {
+      color: $accentColor;
+    }
+  }
+  button[type="reset"]:hover,
+  button[type="reset"]:focus {
+    outline: 1px solid white;
+    color: $accentHoverColor;
+    .binIcon {
+      color: $accentHoverColor;
+    }
+  }
+  button[type="submit"] {
+    font-size: 20px;
+    padding: 10px;
+  }
   ul {
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    margin: 5px 0;
+    padding: 10px 0;
+    margin: 0;
     li {
-      border: 1px solid teal;
+      border: 1px dashed #ffffff7c;
+      background: #ffffff05;
+      color: #fff;
       margin: 5px;
-      padding: 5px;
+      padding: 6px;
       border-radius: 15px;
-      // display: inline-block;
+    }
+    li:hover,
+    li:focus {
+      outline: 1px solid white;
+      border: 1px solid white;
     }
     .deleteButton {
-      color: darkred;
+      color: $accentColor;
+      padding-left: 5px;
+    }
+    .deleteButton:hover,
+    .deleteButton:focus {
+      color: $accentHoverColor;
+      cursor: pointer;
     }
   }
 }
 
 button {
-  background-color: $tertiaryColor;
-  border: 1px solid $secondaryColor;
+  font-family: $primaryFont;
+  background-color: $secondaryColor;
+  color: #fff;
+  border: 0;
   padding: 5px;
-  border-radius: 15px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: 16px;
+  margin: 2px 0;
+}
+
+button:hover,
+button:focus {
+  cursor: pointer;
+  background: $tertiaryColor;
 }
 
 .recipeResults {
@@ -88,12 +175,14 @@ button {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  h3 {
+    text-transform: capitalize;
+  }
   li {
-    // display: inline-block;
     background-color: aliceblue;
     flex-basis: 300px;
-    border: 2px solid rgb(66, 34, 247);
-    box-shadow: 5px 5px 3px $secondaryColor;
+    border: 2px solid #6d6d6d;
+    box-shadow: 5px 5px 3px #5f5f5f;
     border-radius: 10px;
     padding: 20px;
     margin: 20px;
@@ -103,19 +192,14 @@ button {
   }
 }
 
-// for use in displaying modal
-.modalRoot.show {
-  display: inherit;
-}
-
 .modalRoot {
-  display: none;
   .modal {
     max-width: 800px;
     width: 90%;
     position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    margin: 20px auto;
     left: 50%;
     border: 1px solid black;
     border-radius: 15px;
@@ -124,14 +208,72 @@ button {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: grey;
+    background: #fff;
+    h3,
+    h3 + p {
+      align-self: flex-start;
+    }
+    ol,
+    ul {
+      line-height: 1.5;
+      color: #2b2b2b;
+      list-style-position: inside;
+      align-self: flex-start;
+    }
+    a {
+      color: #ea593e;
+      text-decoration: none;
+    }
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+    }
+    button {
+      background: $buttonColor;
+      transition: 0.2s;
+    }
+    button:hover,
+    button:focus {
+      background: $buttonHoverColor;
+    }
   }
+  img {
+    height: 300px;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+.recipeLiContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.openModal {
+  background: $buttonColor;
+  transition: 0.2s;
+  align-self: center;
+  margin-top: 10px;
+}
+
+.openModal:hover,
+.openModal:focus {
+  background: $buttonHoverColor;
 }
 
 footer {
   text-align: center;
+  background: #000;
+  color: #fff;
+  padding: 10px 0;
+  a {
+    color: #ea593e;
+    text-decoration: none;
+  }
+  p {
+    color: #fff;
+  }
 }
 
-// * {
-//   outline: 1px solid red;
-// }
+@import "print";

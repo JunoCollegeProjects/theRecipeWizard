@@ -4,45 +4,66 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Import Stylesheet -->
     <link rel="stylesheet" href="./styles/styles.css" />
-    <title>API Test</title>
+    <!-- Import Favicon -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <!-- Import Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Import Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <title>The Recipe Wizard</title>
   </head>
 
   <body>
-    <header class="wrapper">
-      <h1>Testing Spoonacular</h1>
-      <h2>Testing Remote Branches</h2>
-    </header>
+    <div class="container">
+      <!-- Header -->
+      <header class="wrapper">
+        <h1 class="animate__animated animate__fadeInDown">The Recipe Wizard</h1>
+      </header>
+      <!-- Main -->
+      <main class="wrapper">
+        <section class="instructions">
+          <p>
+            To get started, open your fridge or pantry to take stock of what you've got! Enter some ingredients in the
+            field below, and just like magic, some recipes will show.
+          </p>
+        </section>
+        <form action="submit" class="addIngredient">
+          <label for="recipe" class="sr-only">Enter Ingredients:</label>
+          <input type="text" id="recipe" placeholder="Enter Ingredients" />
+          <button type="submit">+</button>
+        </form>
+        <form action="" class="searchContainer">
+          <button type="reset">
+            Clear All <span class="binIcon"><i class="far fa-trash-alt"></i></span>
+          </button>
+          <ul>
+            <!-- Dynamic Content -->
+          </ul>
+          <button type="submit">Find Recipes</button>
+        </form>
+        <div>
+          <ul class="recipeResults"></ul>
+        </div>
+        <div class="modalRoot"></div>
+      </main>
+    </div>
 
-    <main class="wrapper">
-      <form action="submit" id="addIngredient">
-        <label for="recipe" class="sr-only">Enter Ingredients:</label>
-        <input type="text" id="recipe" placeholder="Enter Ingredients" />
-        <button type="submit">Add</button>
-      </form>
-
-      <form action="" id="searchContainer">
-        <ul>
-          <!-- Dynamic Content -->
-        </ul>
-        <button type="submit">Search</button>
-      </form>
-
-      <div class="container">
-        <ul class="recipeResults"></ul>
-      </div>
-
-      <div class="modalRoot"></div>
-    </main>
-
+    <!-- Footer -->
     <footer>
-      <p>Created at Juno College by Gavyn Holt and Sherry Truong</p>
+      <p>Created at <a href="www.junocollege.com" target="_blank">Juno College</a> by Gavyn Holt and Sherry Truong</p>
     </footer>
 
-    <script
-      src="https://kit.fontawesome.com/b5c85453fa.js"
-      crossorigin="anonymous"
-    ></script>
+    <!-- Javascript -->
+    <!-- Import FontAwesome -->
+    <script src="https://kit.fontawesome.com/b5c85453fa.js" crossorigin="anonymous"></script>
+    <!-- Standard Script -->
     <script src="./script.js"></script>
   </body>
 </html>

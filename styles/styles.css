@@ -241,7 +241,8 @@ html {
 }
 
 body {
-  background: #3eead3;
+  font-family: "Nunito", sans-serif;
+  background: #252525;
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -258,20 +259,57 @@ body {
 .wrapper {
   max-width: 1200px;
   width: 90%;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h1 {
   font-weight: 700;
-  color: black;
+  color: #ffac4e;
   font-size: 50px;
   text-align: center;
+  font-family: "Playfair Display", serif;
 }
 
 h2 {
   font-weight: 700;
-  color: black;
+  color: #ffac4e;
   font-size: 30px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  margin: 15px 0 10px;
+}
+
+h3 {
+  font-weight: 700;
+  color: #000000;
+  font-size: 20px;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  margin: 15px 0 10px;
+}
+
+.container {
+  padding: 5vw 0;
+}
+
+p {
+  color: #2b2b2b;
+  line-height: 1.5;
+}
+
+main {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.instructions {
+  margin: 0 auto 1vw;
+  max-width: 800px;
+}
+.instructions p {
+  font-size: 18px;
+  color: #fff;
   text-align: center;
 }
 
@@ -281,32 +319,38 @@ form {
 }
 form input {
   line-height: 2rem;
-  padding: 3px;
+  padding: 3px 10px;
   width: 100px;
+  border: 0;
 }
 
-#addIngredient {
+.addIngredient {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin: 10px auto;
 }
-#addIngredient input {
+.addIngredient input {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 500px;
           flex: 1 1 500px;
-  margin-right: 10px;
-  border-radius: 15px;
+  margin-right: 5px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  font-family: "Nunito", sans-serif;
 }
-#addIngredient button {
+.addIngredient button {
   -webkit-box-flex: 0;
-      -ms-flex: 0 1 100px;
-          flex: 0 1 100px;
+      -ms-flex: 0 1 50px;
+          flex: 0 1 50px;
+  min-width: 50px;
+  font-size: 30px;
 }
 
-#searchContainer {
+.searchContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -318,31 +362,85 @@ form input {
       -ms-flex-align: center;
           align-items: center;
 }
-#searchContainer ul {
+.searchContainer button[type=reset] {
+  background: transparent;
+  padding: 5px;
+  width: auto;
+  height: auto;
+  color: #fff;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  font-size: 16px;
+  text-transform: none;
+}
+.searchContainer button[type=reset] .binIcon {
+  color: #ee3232;
+}
+.searchContainer button[type=reset]:hover,
+.searchContainer button[type=reset]:focus {
+  outline: 1px solid white;
+  color: #d40b0b;
+}
+.searchContainer button[type=reset]:hover .binIcon,
+.searchContainer button[type=reset]:focus .binIcon {
+  color: #d40b0b;
+}
+.searchContainer button[type=submit] {
+  font-size: 20px;
+  padding: 10px;
+}
+.searchContainer ul {
   list-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin: 5px 0;
+  padding: 10px 0;
+  margin: 0;
 }
-#searchContainer ul li {
-  border: 1px solid teal;
+.searchContainer ul li {
+  border: 1px dashed #ffffff7c;
+  background: #ffffff05;
+  color: #fff;
   margin: 5px;
-  padding: 5px;
+  padding: 6px;
   border-radius: 15px;
 }
-#searchContainer ul .deleteButton {
-  color: darkred;
+.searchContainer ul li:hover,
+.searchContainer ul li:focus {
+  outline: 1px solid white;
+  border: 1px solid white;
+}
+.searchContainer ul .deleteButton {
+  color: #ee3232;
+  padding-left: 5px;
+}
+.searchContainer ul .deleteButton:hover,
+.searchContainer ul .deleteButton:focus {
+  color: #d40b0b;
+  cursor: pointer;
 }
 
 button {
-  background-color: #3eea7d;
-  border: 1px solid #3eabea;
+  font-family: "Nunito", sans-serif;
+  background-color: #19a885;
+  color: #fff;
+  border: 0;
   padding: 5px;
-  border-radius: 15px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: 16px;
+  margin: 2px 0;
+}
+
+button:hover,
+button:focus {
+  cursor: pointer;
+  background: #0f644f;
 }
 
 .recipeResults {
@@ -356,13 +454,16 @@ button {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
+.recipeResults h3 {
+  text-transform: capitalize;
+}
 .recipeResults li {
   background-color: aliceblue;
   -ms-flex-preferred-size: 300px;
       flex-basis: 300px;
-  border: 2px solid #4222f7;
-  -webkit-box-shadow: 5px 5px 3px #3eabea;
-          box-shadow: 5px 5px 3px #3eabea;
+  border: 2px solid #6d6d6d;
+  -webkit-box-shadow: 5px 5px 3px #5f5f5f;
+          box-shadow: 5px 5px 3px #5f5f5f;
   border-radius: 10px;
   padding: 20px;
   margin: 20px;
@@ -371,20 +472,14 @@ button {
   width: 100%;
 }
 
-.modalRoot.show {
-  display: inherit;
-}
-
-.modalRoot {
-  display: none;
-}
 .modalRoot .modal {
   max-width: 800px;
   width: 90%;
   position: absolute;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  top: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  top: 0;
+  margin: 20px auto;
   left: 50%;
   border: 1px solid black;
   border-radius: 15px;
@@ -401,9 +496,114 @@ button {
       -ms-flex-align: center;
           align-items: center;
   padding: 20px;
-  background-color: grey;
+  background: #fff;
+}
+.modalRoot .modal h3,
+.modalRoot .modal h3 + p {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+.modalRoot .modal ol,
+.modalRoot .modal ul {
+  line-height: 1.5;
+  color: #2b2b2b;
+  list-style-position: inside;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+.modalRoot .modal a {
+  color: #ea593e;
+  text-decoration: none;
+}
+.modalRoot .modal a:hover,
+.modalRoot .modal a:focus {
+  text-decoration: underline;
+}
+.modalRoot .modal button {
+  background: #f0592b;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+.modalRoot .modal button:hover,
+.modalRoot .modal button:focus {
+  background: #ad3c1a;
+}
+.modalRoot img {
+  height: 300px;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.recipeLiContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.openModal {
+  background: #f0592b;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin-top: 10px;
+}
+
+.openModal:hover,
+.openModal:focus {
+  background: #ad3c1a;
 }
 
 footer {
   text-align: center;
+  background: #000;
+  color: #fff;
+  padding: 10px 0;
+}
+footer a {
+  color: #ea593e;
+  text-decoration: none;
+}
+footer p {
+  color: #fff;
+}
+
+@media print {
+  .modalRoot .modal {
+    width: 100%;
+    position: static;
+    -webkit-transform: none;
+            transform: none;
+    border: none;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 20px;
+    background: #fff;
+  }
+  .modalRoot img {
+    height: 300px;
+  }
+
+  .noPrint {
+    display: none;
+  }
 }
