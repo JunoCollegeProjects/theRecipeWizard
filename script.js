@@ -11,15 +11,9 @@
 // Create namespaced object
 const app = {};
 app.apiUrl = "https://api.spoonacular.com/recipes/findByIngredients";
-<<<<<<< HEAD
 // app.apiKey = "92cf896d674746e9b22c1a0c561637cd"; //gavynholt@gmail.com
 // app.apiKey = "4cf2ce5f469347068595ffb2fdb1bde9"; //gholtdrums@gmail.com
 app.apiKey = "b3d56d5ae01547b1a1ab1a556e0974fb"; // sherryyyt@gmail.com
-=======
-app.apiKey = "92cf896d674746e9b22c1a0c561637cd"; //gavynholt@gmail.com
-// app.apiKey = "4cf2ce5f469347068595ffb2fdb1bde9"; //gholtdrums@gmail.com
-// app.apiKey = "b3d56d5ae01547b1a1ab1a556e0974fb"; // sherryyyt@gmail.com
->>>>>>> ed4240055f7da866d23ef7ee655f2b4e2a4a5cce
 
 // Recipe Card Result Array
 app.recipeObjectsArray = [];
