@@ -12,8 +12,8 @@
 const app = {};
 app.apiUrl = "https://api.spoonacular.com/recipes/findByIngredients";
 // app.apiKey = "92cf896d674746e9b22c1a0c561637cd"; //gavynholt@gmail.com
-app.apiKey = "4cf2ce5f469347068595ffb2fdb1bde9"; //gholtdrums@gmail.com
-// app.apiKey = "b3d56d5ae01547b1a1ab1a556e0974fb"; // sherryyyt@gmail.com
+// app.apiKey = "4cf2ce5f469347068595ffb2fdb1bde9"; //gholtdrums@gmail.com
+app.apiKey = "b3d56d5ae01547b1a1ab1a556e0974fb"; // sherryyyt@gmail.com
 
 // Recipe Card Result Array
 app.recipeObjectsArray = [];
@@ -132,13 +132,15 @@ app.displayRecipeCards = resultArray => {
 
       const recipeLiElement = document.createElement("li");
       recipeLiElement.innerHTML = `
-        <img src="${resultArray[i].image}" alt="Recipe Card image for: ${resultArray[i].title}">
-        <h3>${resultArray[i].title}</h3>
-        <h4>Ingredients included from search:</h4> 
-        <p>${usedIngredients}</p>
-        <h4>Also needs:</h4> 
-        <p>${missedIngredients}</p>
-        <button class="openModal">Recipe</button>
+        <div class="recipeLiContainer">
+          <img src="${resultArray[i].image}" alt="Recipe Card image for: ${resultArray[i].title}">
+          <h3>${resultArray[i].title}</h3>
+          <h4>Ingredients included from search:</h4> 
+          <p>${usedIngredients}</p>
+          <h4>Also needs:</h4> 
+          <p>${missedIngredients}</p>
+          <button class="openModal">Recipe</button>
+        </div>
       `;
       recipeLiElement.setAttribute("data-id", i);
       cardContainer.appendChild(recipeLiElement);

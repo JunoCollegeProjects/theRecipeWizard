@@ -29,10 +29,11 @@ h1 {
 
 h2 {
   @include headerFont();
+  margin: 15px 0 10px;
 }
 
 h3 {
-  @include headerFont(25px, #000000);
+  @include headerFont(20px, #000000);
   margin: 15px 0 10px;
 }
 
@@ -55,7 +56,7 @@ form {
   margin: 0 auto;
   input {
     line-height: 2rem;
-    padding: 3px;
+    padding: 3px 10px;
     width: 100px;
     border: 0;
   }
@@ -227,12 +228,22 @@ button:focus {
   }
   img {
     height: 300px;
+    width: 100%;
+    object-fit: contain;
   }
+}
+
+.recipeLiContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .openModal {
   background: #f0592b;
   transition: 0.2s;
+  align-self: center;
+  margin-top: 10px;
 }
 
 .openModal:hover,

@@ -268,7 +268,7 @@ h1 {
   color: #ffac4e;
   font-size: 50px;
   text-align: center;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "Playfair Display", serif;
 }
 
 h2 {
@@ -276,15 +276,16 @@ h2 {
   color: #ffac4e;
   font-size: 30px;
   text-align: center;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "Playfair Display", serif;
+  margin: 15px 0 10px;
 }
 
 h3 {
   font-weight: 700;
   color: #000000;
-  font-size: 25px;
+  font-size: 20px;
   text-align: center;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "Playfair Display", serif;
   margin: 15px 0 10px;
 }
 
@@ -308,7 +309,7 @@ form {
 }
 form input {
   line-height: 2rem;
-  padding: 3px;
+  padding: 3px 10px;
   width: 100px;
   border: 0;
 }
@@ -516,12 +517,31 @@ button:focus {
 }
 .modalRoot img {
   height: 300px;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.recipeLiContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .openModal {
   background: #f0592b;
   -webkit-transition: 0.2s;
   transition: 0.2s;
+  -ms-flex-item-align: center;
+      align-self: center;
+  margin-top: 10px;
 }
 
 .openModal:hover,
