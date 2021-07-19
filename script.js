@@ -268,7 +268,7 @@ app.displayModal = async (e) => {
   const closeModal = () => {
     modalRoot.classList.remove("show");
     // remove event listeners (5)
-    modalRoot.querySelector(".closeModal").removeEventListener("click", closeModal);
+    closeModalButton.removeEventListener("click", closeModal);
     document.removeEventListener("click", clickOffToCloseModal);
     document.removeEventListener("keydown", ESCKeyToCloseModal);
     printButton.removeEventListener("click", printRecipe);
