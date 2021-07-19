@@ -62,7 +62,7 @@ form {
   }
 }
 
-#addIngredient {
+.addIngredient {
   display: flex;
   justify-content: space-between;
   margin: 10px auto;
@@ -80,7 +80,7 @@ form {
   }
 }
 
-#searchContainer {
+.searchContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,13 +94,13 @@ form {
     font-size: 16px;
     text-transform: none;
     .binIcon {
-      color: #ee3232;
+      color: $accentColor;
     }
   }
   button[type="reset"]:hover {
-    color: #d40b0b;
+    color: $accentHoverColor;
     .binIcon {
-      color: #d40b0b;
+      color: $accentHoverColor;
     }
   }
   button[type="submit"] {
@@ -121,15 +121,14 @@ form {
       margin: 5px;
       padding: 6px;
       border-radius: 15px;
-      // display: inline-block;
     }
     .deleteButton {
-      color: #ee3232;
+      color: $accentColor;
       padding-left: 5px;
     }
     .deleteButton:hover,
     .deleteButton:focus {
-      color: #d40b0b;
+      color: $accentHoverColor;
       cursor: pointer;
     }
   }
@@ -159,11 +158,9 @@ button:focus {
   justify-content: center;
   flex-wrap: wrap;
   h3 {
-    // fixes issue where some API titles are lower case
     text-transform: capitalize;
   }
   li {
-    // display: inline-block;
     background-color: aliceblue;
     flex-basis: 300px;
     border: 2px solid #6d6d6d;
@@ -177,7 +174,6 @@ button:focus {
   }
 }
 
-// for use in displaying modal
 .modalRoot.show {
   display: inherit;
 }
@@ -200,10 +196,12 @@ button:focus {
     align-items: center;
     padding: 20px;
     background: #fff;
-    h3, h3 + p {
+    h3,
+    h3 + p {
       align-self: flex-start;
     }
-    ol, ul {
+    ol,
+    ul {
       line-height: 1.5;
       color: #2b2b2b;
       list-style-position: inside;
@@ -218,12 +216,12 @@ button:focus {
       text-decoration: underline;
     }
     button {
-      background: #f0592b;
+      background: $buttonColor;
       transition: 0.2s;
     }
     button:hover,
     button:focus {
-      background: #d65027;
+      background: $buttonHoverColor;
     }
   }
   img {
@@ -240,7 +238,7 @@ button:focus {
 }
 
 .openModal {
-  background: #f0592b;
+  background: $buttonColor;
   transition: 0.2s;
   align-self: center;
   margin-top: 10px;
@@ -248,7 +246,7 @@ button:focus {
 
 .openModal:hover,
 .openModal:focus {
-  background: #d65027;
+  background: $buttonHoverColor;
 }
 
 footer {
@@ -265,7 +263,4 @@ footer {
   }
 }
 
-// * {
-//   outline: 1px solid pink;
-// }
 @import "print";

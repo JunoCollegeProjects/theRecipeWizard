@@ -66,7 +66,7 @@ app.handleSearchForm = (e) => {
 
 app.addIngredientToContainer = (e) => {
   e.preventDefault();
-  const ingredientContainerUl = document.querySelector("#searchContainer ul");
+  const ingredientContainerUl = document.querySelector(".searchContainer ul");
   const inputField = e.target.querySelector("input");
   // create an array for possible multiple inputs, split by commas and trim each item of any whitespace
   const ingredientArray = inputField.value.split(",").map((item) => item.trim());
@@ -105,14 +105,14 @@ app.removeLiElement = (e) => {
 
 // ### Function to remove all ingredients from the query ST 7/14/2021
 app.clearIngredientList = () => {
-  const ul = document.querySelector("#searchContainer ul");
+  const ul = document.querySelector(".searchContainer ul");
   ul.innerHTML = "";
 };
 
 // Function to parse ingredient li's to API readable CSV (Comma Separated Values)
 app.parseIngredientsToQuery = () => {
   // Grabs search parameters in the form of an array
-  const searchParams = document.querySelectorAll("#searchContainer ul li");
+  const searchParams = document.querySelectorAll(".searchContainer ul li");
   let searchQuery = "";
   for (i = 0; i < searchParams.length; i++) {
     searchQuery += searchParams[i].textContent;
@@ -293,22 +293,22 @@ app.displayModal = async (e) => {
 // Init method that kicks everything off
 app.init = () => {
   // event listener for add ingredient button
-  const addButton = document.querySelector("#addIngredient");
+  const addButton = document.querySelector(".addIngredient");
   addButton.addEventListener("submit", app.addIngredientToContainer);
 
   // event listener to remove all ingredient li's
-  const removeAllButton = document.querySelector("#searchContainer");
+  const removeAllButton = document.querySelector(".searchContainer");
   removeAllButton.addEventListener("reset", app.clearIngredientList);
 
   // event listener to search for recipes
-  const recipeSearch = document.querySelector("#searchContainer");
+  const recipeSearch = document.querySelector(".searchContainer");
   recipeSearch.addEventListener("submit", app.handleSearchForm);
 
   // event listener for input field to listen for enter key
   const inputField = document.querySelector("#recipe");
   // used function() format instead of () => format to allow use of "this" to target input field
   inputField.addEventListener("keydown", function (e) {
-    const ingredientLiCount = document.querySelector("#searchContainer ul").getElementsByTagName("li").length;
+    const ingredientLiCount = document.querySelector(".searchContainer ul").getElementsByTagName("li").length;
     // if enter is pressed and input field is empty and container has li's(ingredients), search for recipes
     if (e.key.toLowerCase() === "enter" && this.value == "" && ingredientLiCount > 0) {
       app.handleSearchForm(e);
