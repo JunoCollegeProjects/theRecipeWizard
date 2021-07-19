@@ -1,13 +1,3 @@
-// === PSEUDO CODE ===
-// User types ingredients one at a time, pressing ENTER in between.
-// Ingredients are added to an "ingredient container".
-// When user presses submit, send data with API call.
-// API will return recipes as an array.
-// Return error if no results found
-// Loop through array and for each item, generate html for a recipe card and attach to DOM.
-// When user clicks on card, open up recipe in a modal.
-// When user presses the close button, the modal closes.
-
 // Create namespaced object
 const app = {};
 app.apiUrl = "https://api.spoonacular.com/recipes/findByIngredients";
@@ -18,6 +8,7 @@ app.apiKey = "b3d56d5ae01547b1a1ab1a556e0974fb"; // sherryyyt@gmail.com
 // Recipe Card Result Array
 app.recipeObjectsArray = [];
 
+// Function to access API for general recipe card information
 app.getRecipe = (userInput) => {
   // Establish connection with API
   const url = new URL(app.apiUrl);
@@ -28,11 +19,10 @@ app.getRecipe = (userInput) => {
     ranking: 2,
   });
 
-  // returns a promise
   return fetch(url).then((res) => res.json());
 };
 
-// access API for more detailed recipe info, for use with Modal
+// Function to access API for more detailed recipe info, for use with Modal
 app.getRecipeInfoByID = (id) => {
   const url = new URL(`https://api.spoonacular.com/recipes/${id}/information`);
   url.search = new URLSearchParams({
@@ -40,13 +30,13 @@ app.getRecipeInfoByID = (id) => {
     includeNutrition: true,
   });
 
-  // returns a promise
   return fetch(url).then((res) => res.json());
 };
 
+// Function to handle form submission, catching any errors
 app.handleSearchForm = (e) => {
   e.preventDefault();
-  // parse individual <li>'s into a CSV for the API
+  // Parse individual li's into a CSV for the API
   const recipe = app.parseIngredientsToQuery();
   app
     .getRecipe(recipe)
@@ -59,19 +49,21 @@ app.handleSearchForm = (e) => {
       }
     })
     .catch((error) => {
+      console.log(error);
       const cardContainer = document.querySelector(".recipeResults");
       cardContainer.innerHTML = `<li>${error}</li>`;
     });
 };
 
+// Function to add an ingredient li to the search container ul to prepare for search
 app.addIngredientToContainer = (e) => {
   e.preventDefault();
   const ingredientContainerUl = document.querySelector(".searchContainer ul");
   const inputField = e.target.querySelector("input");
-  // create an array for possible multiple inputs, split by commas and trim each item of any whitespace
+  // Create an array for possible multiple inputs, split by commas and trim each item of any whitespace
   const ingredientArray = inputField.value.split(",").map((item) => item.trim());
   for (ingredient of ingredientArray) {
-    // if ingredient contains text, make an li with content
+    // If ingredient contains text, make an li with content
     if (ingredient != "") {
       const ingredientLiElement = document.createElement("li");
       ingredientLiElement.setAttribute("tabindex", 0);
@@ -81,19 +73,19 @@ app.addIngredientToContainer = (e) => {
       deleteIngredientButton.innerHTML = '<i class="far fa-times-circle"></i>';
       ingredientLiElement.append(deleteIngredientButton);
       ingredientContainerUl.appendChild(ingredientLiElement);
-      // event listener for red delete button click
+      // Event listener for red delete button click
       deleteIngredientButton.addEventListener("click", app.removeLiElement);
-      // event listener for DELETE keydown press to delete li
+      // Event listener for DELETE keydown press to delete li
       ingredientLiElement.addEventListener("keydown", function (e) {
         if (e.key.toLowerCase() == "delete") {
-          // if ul has a next sibling, move focus forward before deleting current li (? mark prevents error for case of single li)
+          // If ul has a next sibling, move focus forward before deleting current li (? mark prevents error for case of single li)
           e.target.nextElementSibling?.focus();
           app.removeLiElement(e);
         }
       });
     }
   }
-  // clear the input no matter what
+  // Clear the input no matter what
   inputField.value = "";
 };
 
@@ -103,7 +95,7 @@ app.removeLiElement = (e) => {
   liElement.remove();
 };
 
-// ### Function to remove all ingredients from the query ST 7/14/2021
+// Function to remove all ingredients from the query
 app.clearIngredientList = () => {
   const ul = document.querySelector(".searchContainer ul");
   ul.innerHTML = "";
@@ -123,6 +115,7 @@ app.parseIngredientsToQuery = () => {
   return searchQuery;
 };
 
+// Function to display recipe card after API data is received
 app.displayRecipeCards = (resultArray) => {
   const cardContainer = document.querySelector(".recipeResults");
   cardContainer.innerHTML = "";
@@ -156,24 +149,25 @@ app.displayRecipeCards = (resultArray) => {
     }
   }
 
-  // add event listeners to each button
+  // Add event listeners to each "Recipe" button
   const openModalButtons = document.querySelectorAll(".openModal");
   for (button of openModalButtons) {
     button.addEventListener("click", app.displayModal);
   }
 };
 
+// Function to open a Modal and display recipe in greater detail
 app.displayModal = async (e) => {
   const modalRoot = document.querySelector(".modalRoot");
-  // get index to use with recipeObjectsArray
+  // Get index to use with recipeObjectsArray
   const index = e.target.closest("li").dataset.id;
-  // get recipe ID for a new API call
+  // Get recipe ID for a new API call
   const recipeID = app.recipeObjectsArray[index].id;
 
   // Make API call to retrieve detailed recipe info for Modal
   const recipeObj = await app.getRecipeInfoByID(recipeID);
 
-  //create a ul of ingredient items for display under "Ingredients" heading
+  // Create a ul of ingredient items for display under "Ingredients" heading
   const nutritionUlElement = document.createElement("ul");
   for ({ amount, unit, name } of recipeObj.nutrition.ingredients) {
     const nutritionLiElement = document.createElement("li");
@@ -181,7 +175,7 @@ app.displayModal = async (e) => {
     nutritionUlElement.appendChild(nutritionLiElement);
   }
 
-  // create a ul of selected nutrients only, displayed under "Nutrients at a Glance"
+  // Create a ul of selected nutrients only, displayed under "Nutrients at a Glance"
   const nutrientsUlElement = document.createElement("ul");
   const nutrientsArray = ["Calories", "Protein", "Fat", "Carbohydrates"];
   for ({ amount, unit, name } of recipeObj.nutrition.nutrients) {
@@ -207,41 +201,41 @@ app.displayModal = async (e) => {
   };
   const stringHoursMinutes = convertMinutes(recipeObj.readyInMinutes);
 
-  modalRoot.innerHTML = `
-    <div class="modal">
-      <h2>${recipeObj.title}</h2>
-      <img src=${recipeObj.image} alt="image for recipe: ${recipeObj.title}">
-      <p>Time to make: ${stringHoursMinutes}</p>
-      <p>Servings: ${recipeObj.servings}</p>
-      <h3>Ingredients</h3>
-      ${nutritionUlElement.outerHTML}
-      <h3>Nutrients at a Glance</h3>
-      ${nutrientsUlElement.outerHTML}
-      <h3>Summary</h3>
-      <p>${recipeObj.summary}</p>
-      <h3>Instructions</h3>
-      <p>${recipeObj.instructions}</p>
-      <a href="${recipeObj.spoonacularSourceUrl}" target="_blank" class="noPrint">Click Here for link to full recipe</a>
-      <button class="closeModal noPrint">Close</button>
-      <button class="printModal noPrint">Print</button>
-    </div>
+  // Create modal element, and populate HTML with above info
+  const modal = document.createElement("div");
+  modal.classList.add("modal");
+  modal.innerHTML = `
+    <h2>${recipeObj.title}</h2>
+    <img src=${recipeObj.image} alt="image for recipe: ${recipeObj.title}">
+    <p>Time to make: ${stringHoursMinutes}</p>
+    <p>Servings: ${recipeObj.servings}</p>
+    <h3>Ingredients</h3>
+    ${nutritionUlElement.outerHTML}
+    <h3>Nutrients at a Glance</h3>
+    ${nutrientsUlElement.outerHTML}
+    <h3>Summary</h3>
+    <p>${recipeObj.summary}</p>
+    <h3>Instructions</h3>
+    <p>${recipeObj.instructions}</p>
+    <a href="${recipeObj.spoonacularSourceUrl}" target="_blank" class="noPrint">Click Here for link to full recipe</a>
+    <button class="closeModal noPrint">Close</button>
+    <button class="printModal noPrint">Print</button>
   `;
+  modalRoot.appendChild(modal);
 
-  // cache some nodes after modal display
+  // Cache some HTML elements after modal display for event listener use
   const currentModal = modalRoot.querySelector(".modal");
   const closeModalButton = modalRoot.querySelector(".closeModal");
   const printButton = modalRoot.querySelector(".printModal");
 
-  // set Modal position to current window scroll height
+  // Set Modal position to current window scroll height
   currentModal.style.top = `${Math.round(window.scrollY)}px`;
-  // add class to modalRoot to display
-  modalRoot.classList.add("show");
 
-  // Functions for Event Listeners
+  // Functions for Event Listeners (5)
   const updateModalPosition = () => {
     const currentScrollPosition = Math.round(window.scrollY);
     const modalScrollPosition = parseInt(currentModal.style.top, 10);
-    // if user scrolls up the page, move the modal with it
+    // If user scrolls up the page, move the modal with it
     if (currentScrollPosition < modalScrollPosition) {
       currentModal.style.top = `${currentScrollPosition}px`;
     }
@@ -268,8 +262,8 @@ app.displayModal = async (e) => {
   };
 
   const closeModal = () => {
-    modalRoot.classList.remove("show");
-    // remove event listeners (5)
+    modal.remove();
+    // Remove event listeners (5)
     closeModalButton.removeEventListener("click", closeModal);
     document.removeEventListener("click", clickOffToCloseModal);
     document.removeEventListener("keydown", ESCKeyToCloseModal);
@@ -278,38 +272,39 @@ app.displayModal = async (e) => {
   };
 
   // Modal Event Listeners (5)
-  // event listener to handle scrolling upwards for modals
+  // Event listener to handle scrolling upwards for modals
   document.addEventListener("scroll", updateModalPosition);
-  // event listener for print button
+  // Event listener for print button
   printButton.addEventListener("click", printRecipe);
-  // event listener for the closeModal button
+  // Event listener for the closeModal button
   closeModalButton.addEventListener("click", closeModal);
-  // event listener for clicking off the modal
+  // Event listener for clicking off the modal
   document.addEventListener("click", clickOffToCloseModal);
-  // event listener for ESC Key
+  // Event listener for ESC Key
   document.addEventListener("keydown", ESCKeyToCloseModal);
 };
 
 // Init method that kicks everything off
 app.init = () => {
-  // event listener for add ingredient button
+  // Event listener for add ingredient button
   const addButton = document.querySelector(".addIngredient");
   addButton.addEventListener("submit", app.addIngredientToContainer);
 
-  // event listener to remove all ingredient li's
+  // Event listener to remove all ingredient li's
   const removeAllButton = document.querySelector(".searchContainer");
   removeAllButton.addEventListener("reset", app.clearIngredientList);
 
-  // event listener to search for recipes
+  // Event listener to search for recipes
   const recipeSearch = document.querySelector(".searchContainer");
   recipeSearch.addEventListener("submit", app.handleSearchForm);
 
-  // event listener for input field to listen for enter key
+  // Event listener for input field to listen for ENTER key
   const inputField = document.querySelector("#recipe");
-  // used function() format instead of () => format to allow use of "this" to target input field
+
+  // Used function() format instead of () => format to allow use of "this" to target input field
   inputField.addEventListener("keydown", function (e) {
     const ingredientLiCount = document.querySelector(".searchContainer ul").getElementsByTagName("li").length;
-    // if enter is pressed and input field is empty and container has li's(ingredients), search for recipes
+    // If enter is pressed and input field is empty and container has li's (ingredients), search for recipes
     if (e.key.toLowerCase() === "enter" && this.value == "" && ingredientLiCount > 0) {
       app.handleSearchForm(e);
     }

@@ -51,6 +51,17 @@ main {
   padding-bottom: 20px;
 }
 
+.instructions {
+  margin: 0 auto 1vw;
+  max-width: 800px;
+
+  p {
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+  }
+}
+
 form {
   max-width: 600px;
   margin: 0 auto;
@@ -86,7 +97,7 @@ form {
   align-items: center;
   button[type="reset"] {
     background: transparent;
-    padding: 0;
+    padding: 5px;
     width: auto;
     height: auto;
     color: #fff;
@@ -97,7 +108,9 @@ form {
       color: $accentColor;
     }
   }
-  button[type="reset"]:hover {
+  button[type="reset"]:hover,
+  button[type="reset"]:focus {
+    outline: 1px solid white;
     color: $accentHoverColor;
     .binIcon {
       color: $accentHoverColor;
@@ -121,6 +134,11 @@ form {
       margin: 5px;
       padding: 6px;
       border-radius: 15px;
+    }
+    li:hover,
+    li:focus {
+      outline: 1px solid white;
+      border: 1px solid white;
     }
     .deleteButton {
       color: $accentColor;
@@ -174,12 +192,7 @@ button:focus {
   }
 }
 
-.modalRoot.show {
-  display: inherit;
-}
-
 .modalRoot {
-  display: none;
   .modal {
     max-width: 800px;
     width: 90%;

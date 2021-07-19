@@ -303,6 +303,16 @@ main {
   padding-bottom: 20px;
 }
 
+.instructions {
+  margin: 0 auto 1vw;
+  max-width: 800px;
+}
+.instructions p {
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+}
+
 form {
   max-width: 600px;
   margin: 0 auto;
@@ -354,7 +364,7 @@ form input {
 }
 .searchContainer button[type=reset] {
   background: transparent;
-  padding: 0;
+  padding: 5px;
   width: auto;
   height: auto;
   color: #fff;
@@ -366,10 +376,13 @@ form input {
 .searchContainer button[type=reset] .binIcon {
   color: #ee3232;
 }
-.searchContainer button[type=reset]:hover {
+.searchContainer button[type=reset]:hover,
+.searchContainer button[type=reset]:focus {
+  outline: 1px solid white;
   color: #d40b0b;
 }
-.searchContainer button[type=reset]:hover .binIcon {
+.searchContainer button[type=reset]:hover .binIcon,
+.searchContainer button[type=reset]:focus .binIcon {
   color: #d40b0b;
 }
 .searchContainer button[type=submit] {
@@ -397,6 +410,11 @@ form input {
   padding: 6px;
   border-radius: 15px;
 }
+.searchContainer ul li:hover,
+.searchContainer ul li:focus {
+  outline: 1px solid white;
+  border: 1px solid white;
+}
 .searchContainer ul .deleteButton {
   color: #ee3232;
   padding-left: 5px;
@@ -422,7 +440,7 @@ button {
 button:hover,
 button:focus {
   cursor: pointer;
-  background: #148568;
+  background: #0f644f;
 }
 
 .recipeResults {
@@ -454,13 +472,6 @@ button:focus {
   width: 100%;
 }
 
-.modalRoot.show {
-  display: inherit;
-}
-
-.modalRoot {
-  display: none;
-}
 .modalRoot .modal {
   max-width: 800px;
   width: 90%;
@@ -515,7 +526,7 @@ button:focus {
 }
 .modalRoot .modal button:hover,
 .modalRoot .modal button:focus {
-  background: #d65027;
+  background: #ad3c1a;
 }
 .modalRoot img {
   height: 300px;
@@ -548,7 +559,7 @@ button:focus {
 
 .openModal:hover,
 .openModal:focus {
-  background: #d65027;
+  background: #ad3c1a;
 }
 
 footer {
