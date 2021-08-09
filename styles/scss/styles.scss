@@ -1,6 +1,6 @@
-@import "setup";
-@import "variables";
-@import "mixins";
+@import 'setup';
+@import 'variables';
+@import 'mixins';
 
 * {
   margin: 0;
@@ -74,20 +74,24 @@ form {
 }
 
 .addIngredient {
-  display: flex;
-  justify-content: space-between;
   margin: 10px auto;
+  position: relative;
   input {
-    flex: 1 1 500px;
+    width: 100%;
     margin-right: 5px;
     border-radius: 5px;
     border: 1px solid grey;
     font-family: $primaryFont;
   }
   button {
-    flex: 0 1 50px;
-    min-width: 50px;
-    font-size: 30px;
+    height: 32px;
+    width: 32px;
+    line-height: 22px;
+    margin: 0;
+    border-radius: 5px;
+    position: absolute;
+    right: 5px;
+    top: 4px;
   }
 }
 
@@ -95,7 +99,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  button[type="reset"] {
+  button[type='reset'] {
     background: transparent;
     padding: 5px;
     width: auto;
@@ -108,15 +112,15 @@ form {
       color: $accentColor;
     }
   }
-  button[type="reset"]:hover,
-  button[type="reset"]:focus {
+  button[type='reset']:hover,
+  button[type='reset']:focus {
     outline: 1px solid white;
     color: $accentHoverColor;
     .binIcon {
       color: $accentHoverColor;
     }
   }
-  button[type="submit"] {
+  button[type='submit'] {
     font-size: 20px;
     padding: 10px;
   }
@@ -276,4 +280,4 @@ footer {
   }
 }
 
-@import "print";
+@import 'print';
